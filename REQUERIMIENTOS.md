@@ -11,7 +11,6 @@
        - Dirección
        - Teléfono
        - Correo electrónico
-       - Logo del negocio
    - **Perfil de Tienda**:  
      - El sistema deberá permitir a los vendedores editar su perfil para actualizar la información básica y gestionar su catálogo de productos.
 
@@ -30,8 +29,8 @@
 
 4. **Zonas de Cobertura y Horarios Flexibles**  
    - **Configuración de Zonas de Entrega**:  
-     - El sistema deberá permitir que los vendedores definan zonas de entrega, cada una con tarifas específicas basadas en la distancia.  
-     
+     - El sistema deberá permitir que los vendedores definan una zona de entrega.
+    
    - **Horarios de Entrega**:  
      - El sistema deberá permitir que los vendedores establezcan horarios personalizados para la recepción de pedidos, incluyendo horas específicas y días de la semana.  
      - El sistema deberá permitir la opción de cerrar temporalmente la tienda.
@@ -49,7 +48,7 @@
        - "En preparación": el pedido está siendo preparado.
        - "En camino": el pedido ha sido despachado para la entrega.
        - "Entregado": el pedido ha llegado a su destino.
-     - El sistema deberá permitir la cancelación de un pedido si aún no ha sido procesado.
+     - El sistema deberá permitir rechazar pedidos.
 
 7. **Notificaciones en Tiempo Real**  
    - **Sistema de Notificaciones**:  
@@ -64,7 +63,7 @@
 
 1. **Seguridad**  
    - **Encriptación**:  
-     - El sistema deberá permitir la encriptación de todos los datos sensibles (como contraseñas y datos de tarjetas de crédito).
+     - El sistema deberá permitir la encriptación de todos los datos sensibles (como contraseñas).
 
 2. **Usabilidad**  
    - **Interfaz de Usuario**:  
