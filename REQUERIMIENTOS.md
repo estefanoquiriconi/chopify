@@ -25,14 +25,13 @@
 3. **Promociones y Descuentos Personalizados**  
    - **Campañas Promocionales**:  
      - El sistema deberá permitir a los vendedores crear y gestionar campañas promocionales con las siguientes características:  
-       - Descuentos porcentuales o en monto fijo aplicables a productos individuales o al total de la compra.
-       - Cupones promocionales que los clientes pueden utilizar al momento de pagar.  
+       - Descuentos porcentuales o en monto fijo aplicables a productos individuales o al total de la compra.  
        - Definir la duración de la promoción (fecha de inicio y fin).
 
 4. **Zonas de Cobertura y Horarios Flexibles**  
    - **Configuración de Zonas de Entrega**:  
-     - El sistema deberá permitir que los vendedores definan múltiples zonas de entrega, cada una con tarifas específicas basadas en la distancia.  
-     - El sistema deberá permitir la integración con mapas para calcular automáticamente las distancias y sugerir tarifas.
+     - El sistema deberá permitir que los vendedores definan zonas de entrega, cada una con tarifas específicas basadas en la distancia.  
+     
    - **Horarios de Entrega**:  
      - El sistema deberá permitir que los vendedores establezcan horarios personalizados para la recepción de pedidos, incluyendo horas específicas y días de la semana.  
      - El sistema deberá permitir la opción de cerrar temporalmente la tienda.
