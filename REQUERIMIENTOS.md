@@ -1,7 +1,5 @@
 # 🍻 **Chopify - Requerimientos del Sistema**  
 
-Aquí tienes la versión corregida, comenzando con "El sistema deberá permitir":
-
 ---
 
 ## 📋 **Requerimientos Funcionales**  
@@ -78,7 +76,3 @@ Aquí tienes la versión corregida, comenzando con "El sistema deberá permitir"
      - El sistema deberá permitir el procesamiento de actualizaciones y solicitudes en tiempo real, con tiempos de respuesta no superiores a 3 segundos en la interfaz de usuario.
    - **Escalabilidad**:  
      - El sistema deberá permitir el manejo de un incremento en la carga de usuarios y transacciones sin degradar el rendimiento.
-
----
-
-¿Necesitas hacer más ajustes?
