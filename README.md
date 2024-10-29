@@ -1,51 +1,27 @@
 # 🍻 **Chopify - Delivery de Bebidas para Negocios**  
 
-**Chopify** es una plataforma de delivery de bebidas diseñada para optimizar la gestión de **negocios locales** y conectar a los comerciantes con consumidores que buscan rapidez y comodidad al realizar sus pedidos. Chopify no solo facilita el registro y control de inventario, sino que también proporciona herramientas avanzadas para **promocionar productos**, configurar zonas de entrega, y analizar ventas.  
+Chopify es una plataforma de **delivery de bebidas** enfocada en conectar **negocios locales** con consumidores, facilitando la gestión de inventario, promociones y horarios de operación. Tanto los **vendedores** como los consumidores disfrutan de una experiencia fluida, desde la creación del pedido hasta la entrega a domicilio.
 
-Nuestra misión es brindar una experiencia integral tanto para los **vendedores** como para los consumidores, ayudando a los comerciantes a expandir su negocio mientras los usuarios disfrutan de sus bebidas favoritas sin complicaciones.
+## 🛠️ **Estructura del Proyecto**  
 
----
+El sistema está compuesto por varios módulos interrelacionados que garantizan la operatividad del negocio, desde la gestión del inventario hasta el control de pedidos y promociones.
 
-## 📲 **Características Principales para los Negocios**  
+## 📲 **Flujo de Uso del Sistema**  
 
-- **Registro y Gestión de Tienda:**  
-  Los vendedores pueden crear un perfil de negocio, personalizar su tienda y gestionar sus productos en cualquier momento.
+1. **Registro y autenticación:**  
+   - Los usuarios se registran en la plataforma y acceden con sus credenciales (username y password).  
 
-- **Módulo de Inventario:**  
-  Control en tiempo real del stock disponible, con notificaciones de bajo inventario para evitar ventas fallidas.
+2. **Gestión de Negocios:**  
+   - Los comerciantes crean su negocio, agregan productos y configuran horarios y promociones.  
 
-- **Promociones y Descuentos Personalizados:**  
-  Posibilidad de crear campañas promocionales, cupones de descuento, combos especiales, y productos destacados para aumentar las ventas.
+3. **Creación de pedidos:**  
+   - El cliente realiza un pedido seleccionando productos (de un negocio específico). El pedido se asocia automáticamente al negocio. 
 
-- **Zonas de Cobertura y Horarios Flexibles:**  
-  Configuración avanzada de zonas de entrega con tarifas ajustadas por distancia y horarios personalizados para recibir pedidos.
+4. **Seguimiento del pedido:**  
+   - El estado del pedido se actualiza a medida que avanza por el proceso ("rechazado", "aceptado" "en preparación", "listo").
 
-- **Análisis y Reportes:**  
-  Dashboard de estadísticas de ventas, clientes recurrentes, productos más vendidos y métricas clave para mejorar la estrategia comercial.  
+5. **Promociones y descuentos:**  
+   - Los negocios pueden ofrecer promociones en sus productos.  
 
-- **Pagos Digitales y en Efectivo:**  
-  Soporte para pagos con tarjeta de crédito, débito, billeteras virtuales y efectivo contra entrega.
-
-- **Gestión de Pedidos:**  
-  Actualización del estado de los pedidos (pendiente, en preparación, en camino, entregado) para facilitar la operación diaria.
-
-- **Notificaciones en Tiempo Real:**  
-  Alertas sobre nuevos pedidos, reseñas de clientes y actualizaciones de inventario.
-
----
-## 🌐 **Flujo de Uso para los Negocios**  
-
-1. **Registro del negocio:**  
-   El vendedor crea una cuenta, ingresa la información básica del comercio y sube imágenes de su local y productos.  
-   
-2. **Gestión de productos:**  
-   Se da de alta el inventario con nombres, descripciones, precios y fotografías. Cada bebida puede asociarse a categorías y etiquetas (ej. “cerveza artesanal”, “vino tinto”).  
-
-3. **Configuración de promociones y cobertura:**  
-   El vendedor define zonas de entrega, tiempos estimados y promociones especiales según la temporada o el stock disponible.  
-
-4. **Recepción y gestión de pedidos:**  
-   Los pedidos llegan al panel del negocio en tiempo real. El vendedor los marca como "en preparación", "en camino" o "entregado" para mantener informado al cliente. También puede rechazar pedidos.
-
-5. **Análisis del rendimiento:**  
-   El negocio puede revisar reportes periódicos para identificar productos más vendidos, analizar clientes recurrentes y ajustar estrategias comerciales.
+6. **Notificaciones:**  
+  Alertas sobre nuevos pedidos.
