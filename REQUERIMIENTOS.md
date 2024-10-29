@@ -1,76 +1,61 @@
-# 🍻 **Chopify - Requerimientos del Sistema**  
+# 📋 **Requerimientos Funcionales - Dominio del Negocio**
+
+### 1. **Gestión de Negocios**  
+- El sistema deberá permitir:  
+  - **Registrar negocios** con los siguientes datos: 
+    - Email y contraseña para autenticación  
+    - Nombre del negocio  
+    - CUIT  
+    - Dirección  
+    - Teléfono  
+---
+
+### 2. **Gestión de Productos y Categorías**  
+- El sistema deberá permitir:  
+  - **Registrar productos** asociados a un negocio, con los siguientes datos:  
+    - Nombre  
+    - Descripción  
+    - Precio  
+    - Stock  
+    - Categoría  
+  - **Clasificar los productos** mediante categorías predefinidas.  
+  - **Actualizar el stock** automáticamente tras la compra de un producto.
 
 ---
 
-## 📋 **Requerimientos Funcionales**  
-
-1. **Registro y Gestión de Negocios**  
-   - **Registro de Negocio**:  
-     - El sistema deberá permitir a los vendedores crear una cuenta mediante un formulario con los siguientes campos:  
-       - Nombre del negocio
-       - Dirección
-       - Teléfono
-       - Correo electrónico
-   - **Perfil de Tienda**:  
-     - El sistema deberá permitir a los vendedores editar su perfil para actualizar la información básica y gestionar su catálogo de productos.
-
-2. **Módulo de Inventario**  
-   - **Control de Stock**:  
-     - El sistema deberá permitir a los vendedores gestionar el inventario de cada producto.
-     - El sistema deberá permitir realizar un seguimiento en tiempo real del stock disponible, actualizando la información inmediatamente después de cada transacción.
-   - **Notificaciones de Inventario**:  
-     - El sistema deberá permitir enviar notificaciones automáticas a los vendedores cuando el inventario de un producto esté por debajo de un nivel predefinido (configurable por el vendedor, por ejemplo, 5 unidades).
-
-3. **Promociones y Descuentos Personalizados**  
-   - **Campañas Promocionales**:  
-     - El sistema deberá permitir a los vendedores crear y gestionar campañas promocionales con las siguientes características:  
-       - Descuentos porcentuales o en monto fijo aplicables a productos individuales o al total de la compra.  
-       - Definir la duración de la promoción (fecha de inicio y fin).
-
-4. **Zonas de Cobertura y Horarios Flexibles**  
-   - **Configuración de Zonas de Entrega**:  
-     - El sistema deberá permitir que los vendedores definan una zona de entrega.
-    
-   - **Horarios de Entrega**:  
-     - El sistema deberá permitir que los vendedores establezcan horarios personalizados para la recepción de pedidos, incluyendo horas específicas y días de la semana.  
-     - El sistema deberá permitir la opción de cerrar temporalmente la tienda.
-
-5. **Pagos Digitales y en Efectivo**  
-   - **Métodos de Pago**:  
-     - El sistema deberá permitir la integración de opciones de pago, incluyendo:  
-       - Billeteras virtuales (MercadoPago).
-       - Efectivo contra entrega.  
-
-6. **Gestión de Pedidos**  
-   - **Estado de Pedidos**:  
-     - El sistema deberá permitir a los vendedores gestionar el estado de cada pedido, con las siguientes opciones:  
-       - "Pendiente": pedido recibido pero no procesado.
-       - "En preparación": el pedido está siendo preparado.
-       - "En camino": el pedido ha sido despachado para la entrega.
-       - "Entregado": el pedido ha llegado a su destino.
-     - El sistema deberá permitir rechazar pedidos.
-
-7. **Notificaciones en Tiempo Real**  
-   - **Sistema de Notificaciones**:  
-     - El sistema deberá permitir el envío de notificaciones en tiempo real a los vendedores a través de una interfaz de usuario para eventos como:  
-       - Nuevos pedidos.
-       - Alerta de stock bajo.
-       - Pago recibido.
+### 3. **Promociones y Descuentos**  
+- El sistema deberá permitir:  
+  - **Registrar promociones** aplicables a productos específicos con:  
+    - Nombre y descripción  
+    - Porcentaje de descuento  
+    - Fechas de inicio y fin  
 
 ---
 
-## ⚙️ **Requerimientos No Funcionales**  
+### 4. **Gestión de Pedidos**  
+- El sistema deberá permitir:  
+  - **Registrar pedidos** realizados por los clientes, asociándolos a un negocio.  
+  - **Visualizar los detalles del pedido**, incluyendo productos, cantidades y precios.
+  - **Actualizar el estado del pedido** con las siguientes opciones:  
+    - Aceptado  
+    - Rechazado  
+    - En preparación  
+    - Listo
+---
 
-1. **Seguridad**  
-   - **Encriptación**:  
-     - El sistema deberá permitir la encriptación de todos los datos sensibles (como contraseñas).
+### 5. **Horarios del Negocio**  
+- El sistema deberá permitir:  
+  - **Configurar los horarios de operación** por día de la semana, indicando apertura y cierre.  
 
-2. **Usabilidad**  
-   - **Interfaz de Usuario**:  
-     - El sistema deberá permitir una interfaz intuitiva y amigable.
+---
 
-3. **Rendimiento**  
-   - **Capacidad de Respuesta**:  
-     - El sistema deberá permitir el procesamiento de actualizaciones y solicitudes en tiempo real, con tiempos de respuesta no superiores a 3 segundos en la interfaz de usuario.
-   - **Escalabilidad**:  
-     - El sistema deberá permitir el manejo de un incremento en la carga de usuarios y transacciones sin degradar el rendimiento.
+### 6. **Seguimiento de Pedidos**  
+- El sistema deberá permitir:  
+  - **Actualizar el estado del seguimiento** en cada fase del pedido.  
+  - **Visualizar el historial del pedido** para conocer las actualizaciones realizadas.
+
+---
+
+### 8. **Notificaciones y Alertas**  
+- El sistema deberá permitir:  
+  - **Notificar en tiempo real** a los negocios sobre nuevos pedidos.
