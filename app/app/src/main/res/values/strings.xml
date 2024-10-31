@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Chopify App</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_products">Productos</string>
+    <string name="title_business">Negocio</string>
+</resources>
