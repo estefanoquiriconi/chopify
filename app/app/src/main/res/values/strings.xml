@@ -3,4 +3,13 @@
     <string name="title_home">Inicio</string>
     <string name="title_products">Productos</string>
     <string name="title_business">Negocio</string>
+    <string name="title_Orders">Pedidos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_watch_all_orders">Ver todos los pedidos</string>
+    <string name="title_orders_history">Historial de pedidos</string>
+    <string name="title_Order">Pedido</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="aceptar">Aceptar</string>
+
 </resources>
