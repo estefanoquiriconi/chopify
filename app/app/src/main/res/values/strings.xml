@@ -3,4 +3,14 @@
     <string name="title_home">Inicio</string>
     <string name="title_products">Productos</string>
     <string name="title_business">Negocio</string>
+    <string name="splashDescription">Image splash screen\n</string>
+    <string name="chopify">Chopify</string>
+    <string name="userName">User</string>
+    <string name="password">Password\n</string>
+    <string name="forgot_password">forgot Password?</string>
+    <string name="don_t_have_a_account">don´t have a account?</string>
+    <string name="sign_up">Sing Up</string>
+    <string name="content_description_end_icon_check">Icon check\n</string>
+    <string name="sign_in">SING IN\n</string>
+    <string name="invalid_email">Invalid email</string>
 </resources>

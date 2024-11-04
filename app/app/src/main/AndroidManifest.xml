@@ -21,14 +21,12 @@
         <activity
             android:name=".ui.register.AccountRegistrationActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.register.CreateAccountActivity"
+              <activity
+            android:name=".MainActivity"
             android:exported="false" />
+
         <activity
             android:name=".Splash"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
