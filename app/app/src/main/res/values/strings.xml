@@ -3,4 +3,22 @@
     <string name="title_home">Inicio</string>
     <string name="title_products">Productos</string>
     <string name="title_business">Negocio</string>
+
+
+    <string name="title_account_registration">Crear cuenta</string>
+    <string name="label_email">Correo electrónico</string>
+    <string name="label_password">Contraseña</string>
+    <string name="label_confirm_password">Confirmar contraseña</string>
+
+    <string name="title_business_registration">Datos del negocio</string>
+    <string name="label_name">Nombre</string>
+    <string name="label_cuit">CUIT</string>
+    <string name="label_phone">Teléfono</string>
+
+    <string name="title_address_registration">Dirección del negocio</string>
+    <string name="label_address">Dirección</string>
+    <string name="map_description">Mapa para guardar las coordenadas del usuario</string>
+
+    <string name="btn_continue">Continuar</string>
+    <string name="btn_confirm">Confirmar</string>
 </resources>
