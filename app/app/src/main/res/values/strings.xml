@@ -31,4 +31,8 @@
 
     <string name="btn_continue">Continuar</string>
     <string name="btn_confirm">Confirmar</string>
+    <string name="title_Order">Pedido</string>
+    <string name="title_orders_history">Historial de pedidos</string>
+    <string name="aceptar">ACEPTAR</string>
+    <string name="cancelar">CANCELAR</string>
 </resources>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/negro_carbon"
-    android:paddingTop="16dp"
+    android:padding="16dp"
     tools:context=".ui.orders.OrderHistoryFragment">
 
     <TextView
@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:text="@string/title_orders_history"
         android:textColor="@color/verde_lima"
-        android:textSize="30sp"
+        android:fontFamily="@font/nunito_bold"
+        android:textSize="39sp"
         android:paddingBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

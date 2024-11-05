@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/negro_carbon"
-    android:paddingTop="16dp"
+    android:padding="16dp"
     tools:context=".ui.orders.OrderDetailFragment">
 
     <TextView
@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:text="@string/title_Order"
         android:textColor="@color/verde_lima"
-        android:textSize="30sp"
+        android:fontFamily="@font/nunito_bold"
+        android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -29,28 +30,40 @@
         app:layout_constraintTop_toBottomOf="@id/tvTituloPedido"
         app:layout_constraintBottom_toTopOf="@id/bttnAceptarPedido" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/bttnAceptarPedido"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/aceptar"
-        android:textColor="@color/negro_carbon"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
         android:backgroundTint="@color/verde_lima"
-        android:maTop="16dp"
-        android:paddingBottom="16dp"
+        android:textColor="@color/negro_carbon"
+        android:fontFamily="@font/nunito_bold"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:cornerRadius="16dp"
+        android:padding="12dp"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@id/bttnCancelarPedido"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/bttnCancelarPedido"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="@string/cancelar"
-        android:textColor="@color/negro_carbon"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
         android:backgroundTint="@color/blanco_humo"
-        android:maTop="16dp"
-        android:paddingBottom="16dp"
+        android:textColor="@color/negro_carbon"
+        android:fontFamily="@font/nunito_bold"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:cornerRadius="16dp"
+        android:padding="12dp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
