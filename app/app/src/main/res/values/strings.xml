@@ -4,16 +4,16 @@
     <string name="title_products">Productos</string>
     <string name="title_business">Negocio</string>
 
-    <string name="splashDescription">Image splash screen\n</string>
+    <string name="splashDescription">Descripción de la pantalla de inicio\n</string>
     <string name="chopify">Chopify</string>
-    <string name="userName">User</string>
-    <string name="password">Password\n</string>
-    <string name="forgot_password">forgot Password?</string>
-    <string name="don_t_have_a_account">don´t have a account?</string>
-    <string name="sign_up">Sing Up</string>
-    <string name="content_description_end_icon_check">Icon check\n</string>
-    <string name="sign_in">SING IN\n</string>
-    <string name="invalid_email">Invalid email</string>
+    <string name="userName">Usuario</string>
+    <string name="password">Contraseña\n</string>
+    <string name="forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="don_t_have_a_account">¿No tienes una cuenta?</string>
+    <string name="sign_up">Regístrate</string>
+    <string name="content_description_end_icon_check">Icono de verificación\n</string>
+    <string name="sign_in">INICIAR SESIÓN\n</string>
+    <string name="invalid_email">Correo electrónico inválido</string>
 
     <string name="title_account_registration">Crear cuenta</string>
     <string name="label_email">Correo electrónico</string>
@@ -31,4 +31,13 @@
 
     <string name="btn_continue">Continuar</string>
     <string name="btn_confirm">Confirmar</string>
+
+    <!-- Nuevos valores añadidos -->
+    <string name="add_discount">Agregar Descuento</string>
+    <string name="promotion_name">Nombre de la Promoción</string>
+    <string name="discount">Descuento</string>
+    <string name="start_date">Fecha de Inicio</string>
+    <string name="end_date">Fecha de Fin</string>
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
 </resources>
