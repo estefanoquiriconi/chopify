@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.chopify.app.R;
+import com.chopify.app.databinding.FragmentProductAddDiscountBinding;
+
 
 public class ProductAddDiscountFragment extends Fragment {
 
@@ -17,18 +19,40 @@ public class ProductAddDiscountFragment extends Fragment {
     }
 
     private ProductAddDiscountViewModel mViewModel;
-
+    private FragmentProductAddDiscountBinding binding;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_product_add_discount, container, false);
+        binding = FragmentProductAddDiscountBinding.inflate(inflater, container, false);
+
+       binding. = view.findViewById(R.id.dateEditText);
+
+        // Observa cambios en la fecha seleccionada desde el ViewModel
+        viewModel.getSelectedDate().observe(getViewLifecycleOwner(), selection -> {
+            // Convierte y muestra la fecha seleccionada en el campo de texto
+            Date selectedDate = new Date(selection);
+            DateFormat dateFormat = SimpleDateFormat.getDateInstance();
+            dateEditText.setText(dateFormat.format(selectedDate));
+        });
+
+        dateEditText.setOnClickListener(v -> {
+            MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
+                    .setTitleText("Selecciona una fecha")
+                    .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                    .build();
+
+            datePicker.show(getParentFragmentManager(), "DATE_PICKER");
+
+            datePicker.addOnPositiveButtonClickListener(selection -> {
+                // Envía la fecha seleccionada al ViewModel
+                viewModel.onDateSelected(selection);
+            });
+        });
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ProductAddDiscountViewModel.class);
-        // TODO: Use the ViewModel
+        return binding.getRoot();
     }
+
+
 
 }
