@@ -10,12 +10,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:id="@+id/layoutLogin"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:gravity="center_horizontal"
@@ -107,7 +108,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/verde_lima"
-                android:textColor="@color/white"
+                android:textColor="@color/negro_carbon"
                 android:text="@string/sign_in"
                 android:textSize="18sp"
                 android:textStyle="bold"
