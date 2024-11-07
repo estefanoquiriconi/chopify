@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/fragment_business">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -32,4 +32,7 @@
         android:id="@+id/productAddDiscountFragment"
         android:name="com.chopify.app.ui.products.ProductAddDiscountFragment"
         android:label="ProductAddDiscountFragment" />
+    <fragment
+        android:id="@+id/fragment_business"
+        android:name="com.chopify.app.ui.business.BusinessFragment" />
 </navigation>
