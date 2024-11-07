@@ -1,13 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/negro_carbon"
+    android:padding="16dp"
     tools:context=".ui.orders.OrderDetailFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:id="@+id/tvTituloPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_Order"
+        android:textColor="@color/verde_lima"
+        android:fontFamily="@font/nunito_bold"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProductosDelPedido"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@id/tvTituloPedido"
+        app:layout_constraintBottom_toTopOf="@id/bttnAceptarPedido" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bttnAceptarPedido"
+        android:layout_width="match_parent"
+        android:text="@string/aceptar"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="@color/verde_lima"
+        android:textColor="@color/negro_carbon"
+        android:fontFamily="@font/nunito_bold"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:cornerRadius="16dp"
+        android:padding="12dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/bttnCancelarPedido"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bttnCancelarPedido"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="@string/cancelar"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="@color/blanco_humo"
+        android:textColor="@color/negro_carbon"
+        android:fontFamily="@font/nunito_bold"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:cornerRadius="16dp"
+        android:padding="12dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

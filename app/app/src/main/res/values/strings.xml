@@ -31,8 +31,11 @@
 
     <string name="btn_continue">Continuar</string>
     <string name="btn_confirm">Confirmar</string>
-
-    <!-- Nuevos valores añadidos -->
+    <string name="title_Order">Pedido</string>
+    <string name="title_orders_history">Historial de pedidos</string>
+    <string name="aceptar">ACEPTAR</string>
+    <string name="cancelar">CANCELAR</string>
+  
     <string name="add_discount">Agregar Descuento</string>
     <string name="promotion_name">Nombre de la Promoción</string>
     <string name="discount">Descuento</string>
