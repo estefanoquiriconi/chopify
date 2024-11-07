@@ -31,10 +31,14 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
 dependencies {
+    //Maps
+    implementation (libs.play.services.maps)
+    implementation(libs.play.services.location)
 
     implementation(libs.appcompat)
     implementation(libs.material)

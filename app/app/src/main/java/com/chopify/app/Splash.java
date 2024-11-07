@@ -9,9 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.NavOptions;
-import androidx.navigation.Navigation;
 
 public class Splash extends AppCompatActivity {
 
@@ -23,20 +20,12 @@ public class Splash extends AppCompatActivity {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-
-                    Intent intent = new Intent(Splash.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-
-                }
-            }, 3000);
-
             return insets;
         });
+        new Handler().postDelayed(() -> {
+            Intent intent = new Intent(Splash.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }, 2000);
     }
 }

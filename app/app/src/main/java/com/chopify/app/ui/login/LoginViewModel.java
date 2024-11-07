@@ -50,6 +50,7 @@ public class LoginViewModel extends AndroidViewModel {
         navigateToProfile.setValue(true);
     }
 
+
     public void resetNavigationFlags() {
         navigateToRegister.setValue(false);
         navigateToForgotPassword.setValue(false);

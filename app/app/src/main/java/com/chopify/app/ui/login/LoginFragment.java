@@ -1,5 +1,6 @@
 package com.chopify.app.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,6 +8,7 @@ import android.transition.Fade;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -16,7 +18,9 @@ import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import com.chopify.app.R;
+import com.chopify.app.databinding.ActivityAccountRegistrationBinding;
 import com.chopify.app.databinding.FragmentLoginBinding;
+import com.chopify.app.ui.register.AccountRegistrationActivity;
 
 
 public class LoginFragment extends Fragment {
@@ -29,6 +33,7 @@ public class LoginFragment extends Fragment {
         View view = binding.getRoot();
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        // Configurar la Toolbar si estás usando una personalizada
 
 
         Fade fadeTransition = new Fade();
@@ -45,7 +50,7 @@ public class LoginFragment extends Fragment {
                 binding.editUserName.setEndIconDrawable(R.drawable.check_24);
                 binding.editUserName.setEndIconTintList(
 
-                        ContextCompat.getColorStateList(requireContext(), R.color.verde_lima)
+                        ContextCompat.getColorStateList(requireContext(), R.color.negro_carbon)
                 );
             } else {
 
@@ -55,6 +60,8 @@ public class LoginFragment extends Fragment {
             }
         });
 
+
+        binding.singUp.setOnClickListener(v -> { });
 
         // Observa las acciones de navegación
         loginViewModel.getNavigateToRegister().observe(getViewLifecycleOwner(), navigate -> {
@@ -97,6 +104,9 @@ public class LoginFragment extends Fragment {
         binding.forgotPassword.setOnClickListener(v -> loginViewModel.onForgotPasswordClicked());
         binding.singIn.setOnClickListener(v -> loginViewModel.onSignInClicked());
 */
+        binding.singUp.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), AccountRegistrationActivity.class));
+        });
         return view;
     }
 
