@@ -24,8 +24,6 @@ public class BusinessFragment extends Fragment {
         binding = FragmentBusinessBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textBusiness;
-        businessViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
