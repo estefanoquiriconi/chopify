@@ -1,5 +1,6 @@
 package com.chopify.app.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,7 +18,9 @@ import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import com.chopify.app.R;
+import com.chopify.app.databinding.ActivityAccountRegistrationBinding;
 import com.chopify.app.databinding.FragmentLoginBinding;
+import com.chopify.app.ui.register.AccountRegistrationActivity;
 
 
 public class LoginFragment extends Fragment {
@@ -101,6 +104,9 @@ public class LoginFragment extends Fragment {
         binding.forgotPassword.setOnClickListener(v -> loginViewModel.onForgotPasswordClicked());
         binding.singIn.setOnClickListener(v -> loginViewModel.onSignInClicked());
 */
+        binding.singUp.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), AccountRegistrationActivity.class));
+        });
         return view;
     }
 
