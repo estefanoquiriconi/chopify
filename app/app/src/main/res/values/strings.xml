@@ -22,7 +22,7 @@
 
     <string name="title_business_registration">Datos del negocio</string>
     <string name="label_name">Nombre</string>
-    <string name="label_cuit">CUIT</string>
+    <string name="label_cuit">Cuit</string>
     <string name="label_phone">Teléfono</string>
 
     <string name="title_address_registration">Dirección del negocio</string>
@@ -40,4 +40,5 @@
     <string name="end_date">Fecha de Fin</string>
     <string name="save">Guardar</string>
     <string name="cancel">Cancelar</string>
+    <string name="my_location">My location</string>
 </resources>
