@@ -12,6 +12,7 @@ import android.widget.Toolbar;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
@@ -33,7 +34,6 @@ public class LoginFragment extends Fragment {
         View view = binding.getRoot();
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        // Configurar la Toolbar si estás usando una personalizada
 
 
         Fade fadeTransition = new Fade();
@@ -45,36 +45,40 @@ public class LoginFragment extends Fragment {
         loginViewModel.getIsEmailValid().observe(getViewLifecycleOwner(), isValid -> {
             binding.emailEditTxt.setError(isValid ? null : getString(R.string.invalid_email));
 
-
             if (isValid) {
                 binding.editUserName.setEndIconDrawable(R.drawable.check_24);
                 binding.editUserName.setEndIconTintList(
-
                         ContextCompat.getColorStateList(requireContext(), R.color.negro_carbon)
                 );
             } else {
-
                 binding.editUserName.setEndIconTintList(
                         ContextCompat.getColorStateList(requireContext(), android.R.color.transparent)
                 );
             }
         });
 
-
-        binding.singUp.setOnClickListener(v -> { });
-
-        // Observa las acciones de navegación
+        binding.singUp.setOnClickListener(v -> {
+            loginViewModel.onRegisterClicked();
+        });
         loginViewModel.getNavigateToRegister().observe(getViewLifecycleOwner(), navigate -> {
-        /*    if (navigate) {
-                navigateTo(R.id.action_login_to_register, view);
+            if (navigate) {
+                startActivity(new Intent(getActivity(), AccountRegistrationActivity.class));
                 loginViewModel.resetNavigationFlags();
-            }*/
+            }
         });
 
-        loginViewModel.getNavigateToForgotPassword().observe(getViewLifecycleOwner(), navigate -> {
-          /*     if (navigate) {
-                navigateTo(R.id.action_login_to_forgot_password, view);
+        binding.singIn.setOnClickListener(v -> {loginViewModel.onSignInClicked();});
+        loginViewModel.getNavigateToProducts().observe(getViewLifecycleOwner(), navigate -> {
+            if (navigate) {
+               NavController navController = Navigation.findNavController(view);
+                navController.navigate(R.id.action_loginFragment_to_navigation_products, null, new NavOptions.Builder().build());
                 loginViewModel.resetNavigationFlags();
+            }
+                });
+
+        loginViewModel.getNavigateToForgotPassword().observe(getViewLifecycleOwner(), navigate -> {
+         /*   if (navigate) {
+
             }*/
         });
 
@@ -88,7 +92,8 @@ public class LoginFragment extends Fragment {
         // Configura el TextWatcher en el campo de email
         binding.emailEditTxt.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -96,7 +101,8 @@ public class LoginFragment extends Fragment {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+            }
         });
 
         // Configura los listeners para los botones
@@ -104,9 +110,7 @@ public class LoginFragment extends Fragment {
         binding.forgotPassword.setOnClickListener(v -> loginViewModel.onForgotPasswordClicked());
         binding.singIn.setOnClickListener(v -> loginViewModel.onSignInClicked());
 */
-        binding.singUp.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), AccountRegistrationActivity.class));
-        });
+
         return view;
     }
 

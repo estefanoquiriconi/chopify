@@ -6,20 +6,10 @@
     app:startDestination="@id/loginFragment">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.chopify.app.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/navigation_business"
+        android:id="@+id/businessFragment"
         android:name="com.chopify.app.ui.business.BusinessFragment"
         tools:layout="@layout/fragment_business" />
 
-    <fragment
-        android:id="@+id/navigation_products"
-        android:name="com.chopify.app.ui.products.ProductsFragment"
-
-        tools:layout="@layout/fragment_products" />
     <activity
         android:id="@+id/splash"
         android:name="com.chopify.app.Splash"
@@ -27,12 +17,29 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.chopify.app.ui.login.LoginFragment"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_navigation_products"
+            app:destination="@id/navigation" />
+    </fragment>
     <fragment
         android:id="@+id/productAddDiscountFragment"
         android:name="com.chopify.app.ui.products.ProductAddDiscountFragment"
         android:label="ProductAddDiscountFragment" />
-    <fragment
-        android:id="@+id/fragment_business"
-        android:name="com.chopify.app.ui.business.BusinessFragment" />
+
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/navigation_products">
+        <fragment
+            android:id="@+id/navigation_business"
+            android:name="com.chopify.app.ui.business.BusinessFragment" />
+        <fragment
+            android:id="@+id/navigation_order"
+            android:name="com.chopify.app.ui.orders.OrderFragment"
+            tools:layout="@layout/fragment_products" />
+        <fragment
+            android:id="@+id/navigation_products"
+            android:name="com.chopify.app.ui.products.ProductsFragment"
+            tools:layout="@layout/fragment_products" />
+
+    </navigation>
 </navigation>
