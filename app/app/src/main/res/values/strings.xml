@@ -51,4 +51,5 @@
     <string name="email">chopify@business.com\n</string>
     <string name="location">av.Roca 678\n</string>
     <string name="my_location">My location</string>
+    <string name="pedidos">Pedidos</string>
 </resources>
