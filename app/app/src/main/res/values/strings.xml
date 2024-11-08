@@ -35,7 +35,7 @@
     <string name="title_orders_history">Historial de pedidos</string>
     <string name="aceptar">ACEPTAR</string>
     <string name="cancelar">CANCELAR</string>
-  
+
     <string name="add_discount">Agregar Descuento</string>
     <string name="promotion_name">Nombre de la Promoción</string>
     <string name="discount">Descuento</string>
@@ -52,4 +52,8 @@
     <string name="location">av.Roca 678\n</string>
     <string name="my_location">My location</string>
     <string name="pedidos">Pedidos</string>
+    <string name="title_orders">Pedidos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ver_todos_pedidos">ver todos los pedidos</string>
 </resources>
