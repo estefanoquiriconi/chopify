@@ -1,19 +1,27 @@
 package com.chopify.app.ui.business;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-public class BusinessViewModel extends ViewModel {
+import com.chopify.app.data.relationships.BusinessWithAddress;
+import com.chopify.app.repositories.BusinessRepository;
 
-    private final MutableLiveData<String> mText;
+public class BusinessViewModel extends AndroidViewModel {
 
-    public BusinessViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is business fragment");
+    private final BusinessRepository businessRepository;
+    private final LiveData<BusinessWithAddress> business;
+
+    public BusinessViewModel(@NonNull Application application) {
+        super(application);
+        businessRepository = new BusinessRepository(application);
+        business = businessRepository.findByEmailWithAddress("vinos_finos@mail.com");
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<BusinessWithAddress> getBusiness() {
+        return business;
     }
+
 }
