@@ -40,6 +40,10 @@ dependencies {
     implementation (libs.play.services.maps)
     implementation(libs.play.services.location)
 
+    //Room
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler)
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
