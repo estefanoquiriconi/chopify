@@ -7,16 +7,27 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.chopify.app.R;
+import com.chopify.app.data.entities.Order;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class OrderFragment extends Fragment {
 
     private OrderViewModel mViewModel;
+    private RecyclerView recyclerView;
+    private OrderAdapter adaptador;
+    private List<Order> listaPedidos = new ArrayList<>();
 
     public static OrderFragment newInstance() {
         return new OrderFragment();
@@ -25,7 +36,51 @@ public class OrderFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_order, container, false);
+        View view = inflater.inflate(R.layout.fragment_order, container, false);
+
+        recyclerView = view.findViewById(R.id.rvPedidos);
+
+        obtenerListaPedidos();
+
+        adaptador = new OrderAdapter(getContext(), listaPedidos);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adaptador);
+
+        return view;
+    }
+
+    private void obtenerListaPedidos() {
+        Order pedido = new Order();
+
+        pedido.setId(1);
+        pedido.setOrderDate(new Date());
+        pedido.setStatus("Activo");
+        listaPedidos.add(pedido);
+
+        pedido = new Order();
+        pedido.setId(2);
+        pedido.setOrderDate(new Date());
+        pedido.setStatus("En proceso");
+        listaPedidos.add(pedido);
+
+        pedido = new Order();
+        pedido.setId(3);
+        pedido.setOrderDate(new Date());
+        pedido.setStatus("Enviado");
+        listaPedidos.add(pedido);
+
+        pedido = new Order();
+        pedido.setId(4);
+        pedido.setOrderDate(new Date());
+        pedido.setStatus("Entregado");
+        listaPedidos.add(pedido);
+
+
+        pedido = new Order();
+        pedido.setId(5);
+        pedido.setOrderDate(new Date());
+        pedido.setStatus("Cancelado");
+        listaPedidos.add(pedido);
     }
 
     @Override

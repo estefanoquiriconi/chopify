@@ -9,7 +9,7 @@
     android:background="@color/negro_carbon">
 
     <TextView
-        android:id="@+id/orderDate"
+        android:id="@+id/DateOrderItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
@@ -29,7 +29,7 @@
         android:textSize="16sp"
         android:textColor="@color/blanco_humo"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/orderDate"
+        app:layout_constraintStart_toEndOf="@id/DateOrderItem"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="" />
@@ -42,8 +42,8 @@
         android:layout_marginTop="4dp"
         android:textSize="14sp"
         android:textColor="@color/blanco_humo"
-        app:layout_constraintStart_toEndOf="@id/orderDate"
-        app:layout_constraintTop_toBottomOf="@id/clientName"
+        app:layout_constraintStart_toEndOf="@id/DateOrderItem"
+        app:layout_constraintTop_toBottomOf="@id/titleOrderItem"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="" />
 
