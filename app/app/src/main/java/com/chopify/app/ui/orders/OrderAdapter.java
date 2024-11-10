@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chopify.app.R;
@@ -16,10 +18,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ListItemHold
 
     private List<Order> pedidos;
     private Context context;
+    private int fragmentId;
 
-    public OrderAdapter(Context context, List<Order> pedidos) {
+    public OrderAdapter(Context context, List<Order> pedidos, int fragmentId) {
         this.pedidos = pedidos;
         this.context = context;
+        this.fragmentId = fragmentId;
     }
 
     @NonNull
@@ -68,6 +72,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ListItemHold
 
         @Override
         public void onClick(View view) {
+            if(fragmentId == R.id.navigation_order){
+                NavController navController = Navigation.findNavController(view);
+                navController.navigate(R.id.action_orderFragment_to_orderDetailFragment);
+            }
+
         }
     }
 }

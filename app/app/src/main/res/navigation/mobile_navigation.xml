@@ -39,6 +39,8 @@
             <action
                 android:id="@+id/action_orderFragment_to_orderHistoryFragment"
                 app:destination="@id/orderHistoryFragment" />
+            <action  android:id="@+id/action_orderFragment_to_orderDetailFragment"
+                app:destination="@id/orderDetailFragment"/>
         </fragment>
         <fragment
             android:id="@+id/navigation_products"
@@ -50,4 +52,9 @@
         android:id="@+id/orderHistoryFragment"
         android:name="com.chopify.app.ui.orders.OrderHistoryFragment"
         tools:layout="@layout/fragment_order_history" />
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="com.chopify.app.ui.orders.OrderDetailFragment"
+        tools:layout="@layout/fragment_order_detail"/>
+
 </navigation>

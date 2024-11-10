@@ -42,7 +42,7 @@ public class OrderHistoryFragment extends Fragment {
 
         obtenerListaPedidosPasados();
 
-        adaptador = new OrderAdapter(getContext(), listaPedidos);
+        adaptador = new OrderAdapter(getContext(), listaPedidos, R.id.orderHistoryFragment);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adaptador);
 

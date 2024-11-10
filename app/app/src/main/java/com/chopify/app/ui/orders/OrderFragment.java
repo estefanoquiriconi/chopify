@@ -46,7 +46,7 @@ public class OrderFragment extends Fragment {
 
         obtenerListaPedidos();
 
-        adaptador = new OrderAdapter(getContext(), listaPedidos);
+        adaptador = new OrderAdapter(getContext(), listaPedidos, R.id.navigation_order);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adaptador);
 
