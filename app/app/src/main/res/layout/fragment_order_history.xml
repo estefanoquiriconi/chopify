@@ -15,7 +15,7 @@
         android:text="@string/title_orders_history"
         android:textColor="@color/verde_lima"
         android:fontFamily="@font/nunito_bold"
-        android:textSize="39sp"
+        android:textSize="30sp"
         android:paddingBottom="16dp"
         android:paddingTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"

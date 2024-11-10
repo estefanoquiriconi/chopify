@@ -34,9 +34,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ListItemHold
     public void onBindViewHolder(@NonNull ListItemHolder holder, int position) {
         Order pedido = pedidos.get(position);
 
-        holder.fechaPedido.setText(pedido.getOrderDate().getHours() + ":" + pedido.getOrderDate().getMinutes());
-        holder.tituloPedido.setText(String.valueOf(pedido.getCustomerId()));
-        holder.descripcionPedido.setText(String.valueOf(pedido.getId()));
+        holder.fechaPedido.setText(pedido.getOrderDate().getDate() + "/" + pedido.getOrderDate().getDate());
+        holder.horaPedido.setText(pedido.getOrderDate().getHours() + ":" + pedido.getOrderDate().getMinutes());
+        holder.tituloPedido.setText(String.valueOf(pedido.getCustomerId())); //para luego buscar
+        holder.descripcionPedido.setText(String.valueOf(pedido.getId())); //para luego buscar
+        holder.estadoPedido.setText(pedido.getStatus());
     }
 
     @Override
@@ -47,15 +49,19 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ListItemHold
     public class ListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView fechaPedido;
+        private TextView horaPedido;
         private TextView tituloPedido;
         private TextView descripcionPedido;
+        private TextView estadoPedido;
 
         public ListItemHolder(@NonNull View itemView) {
             super(itemView);
 
-            fechaPedido = itemView.findViewById(R.id.DateOrderItem);
+            fechaPedido = itemView.findViewById(R.id.dateOrderItem);
+            horaPedido = itemView.findViewById(R.id.timeOrderItem);
             tituloPedido = itemView.findViewById(R.id.titleOrderItem);
             descripcionPedido = itemView.findViewById(R.id.descriptionOrderItem);
+            estadoPedido = itemView.findViewById(R.id.statusOrderItem);
 
             itemView.setOnClickListener(this);
         }
