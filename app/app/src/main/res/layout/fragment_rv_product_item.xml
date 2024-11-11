@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:background="@color/negro_carbon">
 
+    <!-- Contenido existente sin cambios -->
     <ImageView
         android:id="@+id/imgProductItem"
         android:layout_width="98dp"
@@ -14,31 +18,72 @@
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/nameProductItem"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text=""
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imgProductItem"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/nunito_bold"
+        android:textColor="@color/blanco_humo"
+        android:text="Title"
+        app:layout_constraintStart_toEndOf="@id/imgProductItem"
+        app:layout_constraintEnd_toStartOf="@id/priceProductItem"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/descriptionProductItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/nunito"
+        android:text="description"
+        android:textColor="@color/blanco_humo"
+        app:layout_constraintStart_toEndOf="@id/imgProductItem"
+        app:layout_constraintEnd_toStartOf="@id/priceProductItem"
+        app:layout_constraintTop_toBottomOf="@id/nameProductItem" />
+
+    <TextView
+        android:id="@+id/priceProductItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="8dp"
-        android:text=""
-        android:textSize="12sp"
-        android:textStyle="italic"
-        app:layout_constraintTop_toBottomOf="@+id/nameProductItem"
-        app:layout_constraintStart_toEndOf="@+id/imgProductItem"/>
+        android:textSize="16sp"
+        android:textColor="@color/verde_lima"
+        android:fontFamily="@font/nunito_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:text="$50.00" />
 
+    <TextView
+        android:id="@+id/discountLabelProductItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/blanco_humo"
+        android:fontFamily="@font/nunito"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/priceProductItem"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        tools:text="-20%" />
+
+    <!-- Línea divisora -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/black"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
