@@ -26,6 +26,10 @@
         android:id="@+id/productAddDiscountFragment"
         android:name="com.chopify.app.ui.products.ProductAddDiscountFragment"
         android:label="ProductAddDiscountFragment" />
+    <fragment
+        android:id="@+id/productCreateEditFragment"
+        android:name="com.chopify.app.ui.products.ProductCreateEditFragment"
+        android:label="ProductAddDiscountFragment" />
 
     <navigation android:id="@+id/navigation"
         app:startDestination="@id/navigation_products">

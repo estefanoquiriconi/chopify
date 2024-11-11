@@ -81,6 +81,7 @@
                 app:hintTextColor="@color/negro_carbon">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
