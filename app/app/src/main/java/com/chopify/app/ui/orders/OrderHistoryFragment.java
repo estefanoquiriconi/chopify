@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,14 @@ import com.chopify.app.R;
 import com.chopify.app.data.entities.Order;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OrderHistoryFragment extends Fragment {
 
-    private OrderHistoryViewModel mViewModel;
+    private OrderHistoryViewModel orderHistoryViewModel;
 
     private RecyclerView recyclerView;
     private OrderAdapter adaptador;
@@ -40,7 +43,25 @@ public class OrderHistoryFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.rvPedidosPasados);
 
-        obtenerListaPedidosPasados();
+        // Inicializar el ViewModel
+        orderHistoryViewModel = new ViewModelProvider(
+                this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())
+        ).get(OrderHistoryViewModel.class);
+
+        // Observar los datos del ViewModel
+        orderHistoryViewModel.getBusinessHistoryOrders().observe(getViewLifecycleOwner(), orders -> {
+            if (orders != null) {
+                listaPedidos.clear();
+                listaPedidos.addAll(orders);
+                listaPedidos.removeIf(order -> (!order.getStatus().equals("Cancelado") && !order.getStatus().equals("Listo")));
+                listaPedidos = listaPedidos.stream()
+                        .sorted(Comparator.comparing(Order::getOrderDate).reversed())
+                        .collect(Collectors.toList());
+                adaptador.notifyDataSetChanged();
+                Log.d("OrderHistoryFragment", "onCreateView: se ha actualizado la lista de pedidos pasados");
+            }
+        });
 
         adaptador = new OrderAdapter(getContext(), listaPedidos, R.id.orderHistoryFragment);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -49,44 +70,10 @@ public class OrderHistoryFragment extends Fragment {
         return view;
     }
 
-    private void obtenerListaPedidosPasados() {
-        Order pedido = new Order();
-
-        pedido.setId(6);
-        pedido.setOrderDate(new Date());
-        pedido.setStatus("Cancelado");
-        listaPedidos.add(pedido);
-
-        pedido = new Order();
-        pedido.setId(7);
-        pedido.setOrderDate(new Date());
-        pedido.setStatus("Entregado");
-        listaPedidos.add(pedido);
-
-        pedido = new Order();
-        pedido.setId(8);
-        pedido.setOrderDate(new Date());
-        pedido.setStatus("Entregado");
-        listaPedidos.add(pedido);
-
-        pedido = new Order();
-        pedido.setId(9);
-        pedido.setOrderDate(new Date());
-        pedido.setStatus("Entregado");
-        listaPedidos.add(pedido);
-
-
-        pedido = new Order();
-        pedido.setId(10);
-        pedido.setOrderDate(new Date());
-        pedido.setStatus("Cancelado");
-        listaPedidos.add(pedido);
-    }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(OrderHistoryViewModel.class);
+        orderHistoryViewModel = new ViewModelProvider(this).get(OrderHistoryViewModel.class);
         // TODO: Use the ViewModel
     }
 

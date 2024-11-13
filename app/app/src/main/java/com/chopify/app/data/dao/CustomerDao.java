@@ -1,5 +1,6 @@
 package com.chopify.app.data.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -20,6 +21,6 @@ public interface CustomerDao {
     void delete(Customer customer);
 
     @Query("SELECT * FROM customers WHERE id = :id")
-    Customer getById(long id);
+    LiveData<Customer> getById(long id);
 
 }

@@ -1,5 +1,6 @@
 package com.chopify.app.ui.orders;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,15 +25,18 @@ import com.chopify.app.data.entities.Order;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OrderFragment extends Fragment {
 
-    private OrderViewModel mViewModel;
+
     private RecyclerView recyclerView;
     private OrderAdapter adaptador;
     private List<Order> listaPedidos = new ArrayList<>();
+    private OrderViewModel orderViewModel;
 
     public static OrderFragment newInstance() {
         return new OrderFragment();
@@ -44,11 +50,29 @@ public class OrderFragment extends Fragment {
         //recyclerview
         recyclerView = view.findViewById(R.id.rvPedidos);
 
-        obtenerListaPedidos();
-
         adaptador = new OrderAdapter(getContext(), listaPedidos, R.id.navigation_order);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adaptador);
+
+        // Inicializar el ViewModel
+        orderViewModel = new ViewModelProvider(
+                this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())
+        ).get(OrderViewModel.class);
+
+        // Observar los datos del ViewModel
+        orderViewModel.getBusinessOrders().observe(getViewLifecycleOwner(), orders -> {
+            if (orders != null) {
+                listaPedidos.clear();
+                listaPedidos.addAll(orders);
+                listaPedidos.removeIf(order -> (!order.getStatus().equals("Activo") && !order.getStatus().equals("En Preparacion")));
+                listaPedidos = listaPedidos.stream()
+                        .sorted(Comparator.comparing(Order::getOrderDate).reversed())
+                        .collect(Collectors.toList());
+                adaptador.notifyDataSetChanged();
+                Log.d("OrderFragment", "onCreateView: se ha actualizado la lista de pedidos");
+            }
+        });
 
         //nav to verTodosLosPedidos
         TextView textViewNavigate = view.findViewById(R.id.tvVerTodosPedidos);
@@ -64,52 +88,15 @@ public class OrderFragment extends Fragment {
         return view;
     }
 
-    private void obtenerListaPedidos() {
-        Order pedido = new Order();
-
-        pedido.setId(1);
-        pedido.setOrderDate(new Date());
-        pedido.setStatus("Activo");
-        listaPedidos.add(pedido);
-
-        pedido = new Order();
-        pedido.setId(2);
-        pedido.setOrderDate(new Date());
-        pedido.setStatus("Activo");
-        listaPedidos.add(pedido);
-
-        pedido = new Order();
-        pedido.setId(3);
-        pedido.setOrderDate(new Date());
-        pedido.setStatus("Activo");
-        listaPedidos.add(pedido);
-
-        pedido = new Order();
-        pedido.setId(4);
-        pedido.setOrderDate(new Date());
-        pedido.setStatus("Activo");
-        listaPedidos.add(pedido);
-
-
-        pedido = new Order();
-        pedido.setId(5);
-        pedido.setOrderDate(new Date());
-        pedido.setStatus("Activo");
-        listaPedidos.add(pedido);
-    }
-
     @Override
     public void onResume() {
         super.onResume();
-        listaPedidos.clear();
-        this.obtenerListaPedidos();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
+        orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         // TODO: Use the ViewModel
     }
-
 }
