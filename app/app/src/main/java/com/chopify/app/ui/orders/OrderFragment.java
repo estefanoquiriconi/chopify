@@ -47,6 +47,16 @@ public class OrderFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order, container, false);
 
+        // Inicializar el ViewModel
+        orderViewModel = new ViewModelProvider(
+                this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())
+        ).get(OrderViewModel.class);
+
+        long businessId=2;
+
+        orderViewModel.init(businessId);
+
         //recyclerview
         recyclerView = view.findViewById(R.id.rvPedidos);
 
@@ -54,25 +64,20 @@ public class OrderFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adaptador);
 
-        // Inicializar el ViewModel
-        orderViewModel = new ViewModelProvider(
-                this,
-                ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())
-        ).get(OrderViewModel.class);
-
         // Observar los datos del ViewModel
-        orderViewModel.getBusinessOrders().observe(getViewLifecycleOwner(), orders -> {
+        orderViewModel.getBusinessOrdersWithCustomers().observe(getViewLifecycleOwner(), orders -> {
             if (orders != null) {
                 listaPedidos.clear();
                 listaPedidos.addAll(orders);
-                listaPedidos.removeIf(order -> (!order.getStatus().equals("Activo") && !order.getStatus().equals("En Preparacion")));
+                listaPedidos.removeIf(order -> (!order.getStatus().equals("Activo")));
                 listaPedidos = listaPedidos.stream()
                         .sorted(Comparator.comparing(Order::getOrderDate).reversed())
                         .collect(Collectors.toList());
                 adaptador.notifyDataSetChanged();
-                Log.d("OrderFragment", "onCreateView: se ha actualizado la lista de pedidos");
+                Log.d("OrderFragment", "onCreateView: se ha actualizado la lista de pedidos con clientes. Size=" + listaPedidos.size());
             }
         });
+
 
         //nav to verTodosLosPedidos
         TextView textViewNavigate = view.findViewById(R.id.tvVerTodosPedidos);

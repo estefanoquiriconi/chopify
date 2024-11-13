@@ -2,6 +2,7 @@ package com.chopify.app.data.entities;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.ForeignKey;
 import androidx.room.TypeConverters;
@@ -43,6 +44,10 @@ public class Order {
     @ColumnInfo(name = "order_date")
     private Date orderDate;
     private String status;
+    @Ignore
+    private String customerName;
+    @Ignore
+    private String cantidadProductos;
 
     public Order(){
 
@@ -102,5 +107,21 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCantidadProductos() {
+        return cantidadProductos;
+    }
+
+    public void setCantidadProductos(String cantidadProductos) {
+        this.cantidadProductos = cantidadProductos;
     }
 }

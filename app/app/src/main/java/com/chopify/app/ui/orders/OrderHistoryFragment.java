@@ -26,8 +26,7 @@ import java.util.stream.Collectors;
 
 public class OrderHistoryFragment extends Fragment {
 
-    private OrderHistoryViewModel orderHistoryViewModel;
-
+    private OrderViewModel orderHistoryViewModel;
     private RecyclerView recyclerView;
     private OrderAdapter adaptador;
     private List<Order> listaPedidos = new ArrayList<>();
@@ -47,34 +46,38 @@ public class OrderHistoryFragment extends Fragment {
         orderHistoryViewModel = new ViewModelProvider(
                 this,
                 ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())
-        ).get(OrderHistoryViewModel.class);
+        ).get(OrderViewModel.class);
 
-        // Observar los datos del ViewModel
-        orderHistoryViewModel.getBusinessHistoryOrders().observe(getViewLifecycleOwner(), orders -> {
-            if (orders != null) {
-                listaPedidos.clear();
-                listaPedidos.addAll(orders);
-                listaPedidos.removeIf(order -> (!order.getStatus().equals("Cancelado") && !order.getStatus().equals("Listo")));
-                listaPedidos = listaPedidos.stream()
-                        .sorted(Comparator.comparing(Order::getOrderDate).reversed())
-                        .collect(Collectors.toList());
-                adaptador.notifyDataSetChanged();
-                Log.d("OrderHistoryFragment", "onCreateView: se ha actualizado la lista de pedidos pasados");
-            }
-        });
+        long businessId = 2; //change me
+        orderHistoryViewModel.init(businessId);
 
         adaptador = new OrderAdapter(getContext(), listaPedidos, R.id.orderHistoryFragment);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adaptador);
 
+        // Observar los datos del ViewModel
+        orderHistoryViewModel.getBusinessOrdersWithCustomers().observe(getViewLifecycleOwner(), orders -> {
+            if (orders != null) {
+                listaPedidos.clear();
+                listaPedidos.addAll(orders);
+
+                // Filtrar pedidos por estado
+                listaPedidos.removeIf(order ->
+                        !order.getStatus().equals("Cancelado") &&
+                                !order.getStatus().equals("Listo") &&
+                                !order.getStatus().equals("En Preparacion")
+                );
+
+                // Ordenar por fecha
+                listaPedidos = listaPedidos.stream()
+                        .sorted(Comparator.comparing(Order::getOrderDate).reversed())
+                        .collect(Collectors.toList());
+
+                adaptador.notifyDataSetChanged();
+                Log.d("OrderHistoryFragment", "onCreateView: Lista actualizada con pedidos pasados. Size=" + listaPedidos.size());
+            }
+        });
+
         return view;
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        orderHistoryViewModel = new ViewModelProvider(this).get(OrderHistoryViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
 }

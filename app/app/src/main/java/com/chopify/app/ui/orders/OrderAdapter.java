@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,8 +25,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ListItemHold
     private Context context;
     private int fragmentId;
 
-    public OrderAdapter(Context context, List<Order> pedidos, int fragmentId) {
-        this.pedidos = pedidos;
+    public OrderAdapter(Context context, List<Order> listaPedidos, int fragmentId) {
+        this.pedidos = listaPedidos;
         this.context = context;
         this.fragmentId = fragmentId;
     }
@@ -47,7 +48,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ListItemHold
 
         holder.fechaPedido.setText(formatoFecha.format(pedido.getOrderDate()));
         holder.horaPedido.setText(formatoHora.format(pedido.getOrderDate()));
-        holder.tituloPedido.setText(String.valueOf(pedido.getCustomerId())); //para luego buscar
+        holder.tituloPedido.setText("destinado a " + pedido.getCustomerName());
         holder.descripcionPedido.setText(String.valueOf(pedido.getId())); //para luego buscar
         holder.estadoPedido.setText(pedido.getStatus());
     }
