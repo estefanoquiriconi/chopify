@@ -20,7 +20,8 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_navigation_products"
-            app:destination="@id/navigation" />
+            app:destination="@id/navigation"
+            />
     </fragment>
     <fragment
         android:id="@+id/productAddDiscountFragment"

@@ -41,7 +41,6 @@ public class LoginFragment extends Fragment {
         setEnterTransition(fadeTransition);
         setExitTransition(fadeTransition);
 
-        // Observa los cambios en la validación de email
         loginViewModel.getIsEmailValid().observe(getViewLifecycleOwner(), isValid -> {
             biding.emailEditTxt.setError(isValid ? null : getString(R.string.invalid_email));
 
@@ -69,9 +68,8 @@ public class LoginFragment extends Fragment {
         biding.singIn.setOnClickListener(v -> loginViewModel.onSignInClicked(Objects.requireNonNull(biding.emailEditTxt.getText()).toString(), Objects.requireNonNull(biding.passwordEditTxt.getText()).toString()));
         loginViewModel.getNavigateToProducts().observe(getViewLifecycleOwner(), navigate -> {
             if (navigate) {
-
                 NavController navController = Navigation.findNavController(view);
-                navController.navigate(R.id.action_loginFragment_to_navigation_products, null, new NavOptions.Builder().build());
+                navController.navigate(R.id.action_loginFragment_to_navigation_products, null, new  NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build());
                 loginViewModel.resetNavigationFlags();
             }
         });
@@ -89,15 +87,6 @@ public class LoginFragment extends Fragment {
 
         loginViewModel.getNavigateToForgotPassword().observe(getViewLifecycleOwner(), navigate -> {
         });
-
-        loginViewModel.getNavigateToProfile().observe(getViewLifecycleOwner(), navigate -> {
-           /* if (navigate) {
-                navigateTo(R.id.action_login_to_profile, view);
-                loginViewModel.resetNavigationFlags();
-            }*/
-        });
-
-        // Configura el TextWatcher en el campo de email
         biding.emailEditTxt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -113,13 +102,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        // Configura los listeners para los botones
-       /* binding.singUp.setOnClickListener(v -> loginViewModel.onRegisterClicked());
-        binding.forgotPassword.setOnClickListener(v -> loginViewModel.onForgotPasswordClicked());
-        binding.singIn.setOnClickListener(v -> loginViewModel.onSignInClicked());
-*/
-
-        return view;
+        return biding.getRoot();
     }
 
     private void navigateTo(int actionId, View view) {

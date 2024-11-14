@@ -11,6 +11,8 @@ import com.chopify.app.helpers.SessionManager;
 import com.chopify.app.repositories.BusinessRepository;
 import com.chopify.app.ui.login.validation.EmailValidation;
 
+import java.util.Objects;
+
 public class LoginViewModel extends AndroidViewModel {
     private final SessionManager sessionManager= new SessionManager(getApplication().getApplicationContext());
     private final MutableLiveData<Boolean> isEmailValid = new MutableLiveData<>();
@@ -58,7 +60,7 @@ public class LoginViewModel extends AndroidViewModel {
     public void authenticateUser(String email, String password) {
 
        businessRepository.findByEmail(email).observeForever(business -> {
-            if (business != null  ) {
+            if (business != null && !Objects.equals(business.getEmail(), "")) {
                 if (business.getEmail().equals(email) && business.getPassword().equals(password)) {
                     sessionManager.saveBusiness(business);
                     navigateToProducts.setValue(true);
