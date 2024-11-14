@@ -31,6 +31,18 @@ public class Product {
     @ColumnInfo(name = "category_id")
     private long categoryId;
 
+    public Product() {
+    }
+
+    public Product(String name, String description, double price, int stock, long businessId, long categoryId) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+        this.businessId = businessId;
+        this.categoryId = categoryId;
+    }
+
     public long getId() {
         return id;
     }

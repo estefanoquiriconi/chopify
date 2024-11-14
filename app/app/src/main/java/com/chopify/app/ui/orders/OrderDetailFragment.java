@@ -51,7 +51,7 @@ public class OrderDetailFragment extends Fragment {
 
         if (getArguments() != null) {
             Long orderId = getArguments().getLong("orderId");
-            Log.d("OrderDetailDebug", "onCreateView: el id es " + orderId);
+            Log.d("OrderDetailDebug", "onCreateView: el id del pedido es " + orderId);
         }
 
         //recycler view

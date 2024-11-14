@@ -116,8 +116,11 @@ public abstract class AppDataBase extends RoomDatabase {
             AddressDao addressDao = dataBase.addressDao();
             BusinessDao businessDao = dataBase.businessDao();
             OrderDao orderDao = dataBase.orderDao();
+            OrderDetailDao orderDetailDao = dataBase.orderDetailDao();
             CustomerDao customerDao = dataBase.customerDao();
             DeliveryDao deliveryDao = dataBase.deliveryDao();
+            ProductDao productDao = dataBase.productDao();
+            CategoryDao categoryDao = dataBase.categoryDao();
 
             long addressID1 = addressDao.insert(new Address("Av. Libertador", -27.763893, -64.243792));
             long addressID2 = addressDao.insert(new Address("Av. Independencia", -27.791204, -64.269635));
@@ -131,15 +134,25 @@ public abstract class AppDataBase extends RoomDatabase {
             long deliveryID1 = deliveryDao.insert(new Delivery("De Yebra", "Marcelo", "marcelo@gmail.com", "33323122", "333231222","La Plata 554"));
             long customerID1 = customerDao.insert(new Customer("Martin", "Koleff", "martincito@gmail.com", "33933333", crearFecha("09:11:2004","12:12"), addressID3));
 
-            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","12:12:00"),"Activo"));
-            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","13:13:00"),"Activo"));
-            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","06:50:00"),"Activo"));
-            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","20:30:00"),"Activo"));
-            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","21:21:00"),"Activo"));
-            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","23:30:00"),"En Preparacion"));
-            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","20:30:00"),"En Preparacion"));
-            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","21:21:00"),"Cancelado"));
-            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","23:30:00"),"Cancelado"));
+            long orderID1 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","12:12:00"),"Activo"));
+            long orderID2 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","13:13:00"),"Activo"));
+            long orderID3 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","06:50:00"),"Activo"));
+            long orderID4 =  orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","20:30:00"),"Activo"));
+            long orderID5 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","21:21:00"),"Activo"));
+            long orderID6 =  orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","23:30:00"),"Cancelado"));
+            long orderID7 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","20:30:00"),"Activo"));
+            long orderID8 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","21:21:00"),"Cancelado"));
+            long orderID9 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","23:30:00"),"Cancelado"));
+
+            long categoryID1 = categoryDao.insert(new Category("Cervezas"));
+
+            long productID1 = productDao.insert(new Product("Budweiser","Cerveza",200,20,businessID2,categoryID1));
+            long productID2 = productDao.insert(new Product("Imperial","Cerveza",300,30,businessID2,categoryID1));
+            long productID3 = productDao.insert(new Product("Brahma","Cerveza",400,40,businessID2,categoryID1));
+
+            long orderDetailID1 = orderDetailDao.insert(new OrderDetail(orderID1,productID1,2,200));
+            long orderDetailID2 = orderDetailDao.insert(new OrderDetail(orderID1,productID2,3,300));
+            long orderDetailID3 = orderDetailDao.insert(new OrderDetail(orderID1,productID3,4,400));
         });
     }
 

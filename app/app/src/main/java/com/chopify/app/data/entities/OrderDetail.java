@@ -30,6 +30,16 @@ public class OrderDetail {
     @ColumnInfo(name = "unit_price")
     private double unitPrice;
 
+    public OrderDetail() {
+    }
+
+    public OrderDetail(long orderId, long productId, int quantity, double unitPrice) {
+        this.orderId = orderId;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+    }
+
     public long getId() {
         return id;
     }
