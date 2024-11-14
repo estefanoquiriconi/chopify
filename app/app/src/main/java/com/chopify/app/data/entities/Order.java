@@ -2,9 +2,14 @@ package com.chopify.app.data.entities;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.ForeignKey;
+import androidx.room.TypeConverters;
 
+import com.chopify.app.utils.DateConverter;
+
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity(tableName = "orders",
@@ -26,6 +31,7 @@ import java.util.Date;
                 )
         }
 )
+@TypeConverters({DateConverter.class})
 public class Order {
     @PrimaryKey(autoGenerate = true)
     private long id;
@@ -38,6 +44,22 @@ public class Order {
     @ColumnInfo(name = "order_date")
     private Date orderDate;
     private String status;
+    @Ignore
+    private String customerName;
+    @Ignore
+    private String cantidadProductos;
+
+    public Order(){
+
+    }
+
+    public Order(long customerId, long businessId, long deliveryId, Date orderDate,String status){
+        this.customerId = customerId;
+        this.businessId = businessId;
+        this.deliveryId = deliveryId;
+        this.orderDate = orderDate;
+        this.status = status;
+    }
 
     public long getId() {
         return id;
@@ -85,5 +107,21 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCantidadProductos() {
+        return cantidadProductos;
+    }
+
+    public void setCantidadProductos(String cantidadProductos) {
+        this.cantidadProductos = cantidadProductos;
     }
 }

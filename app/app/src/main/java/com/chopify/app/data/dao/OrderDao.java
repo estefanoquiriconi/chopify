@@ -1,5 +1,6 @@
 package com.chopify.app.data.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -18,9 +19,14 @@ public interface OrderDao {
     void update(Order order);
 
     @Query("SELECT * FROM orders WHERE id = :id")
-    Order getById(long id);
+    LiveData<Order> getById(long id);
 
     @Query("SELECT * FROM orders WHERE business_id = :businessId ORDER BY order_date DESC")
-    List<Order> getBusinessOrders(long businessId);
+    LiveData<List<Order>> getBusinessOrders(long businessId);
 
+    @Query("SELECT * FROM orders WHERE status = :status ORDER BY order_date DESC")
+    LiveData<List<Order>> getOrdersByStatus(String status);
+
+    @Query("SELECT * FROM orders WHERE business_id = :businessId AND status = :status ORDER BY order_date DESC")
+    LiveData<List<Order>> getBusinessOrdersByStatus(long businessId, String status);
 }

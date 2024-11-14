@@ -30,6 +30,21 @@ public class Customer {
     @ColumnInfo(name = "address_id")
     private long addressId;
 
+    public Customer(){
+
+    }
+
+    public Customer( String firstName, String lastName, String email, String phone, Date birthDate, long addressId){
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.birthDate = birthDate;
+        this.addressId = addressId;
+    }
+
+
     public long getId() {
         return id;
     }
