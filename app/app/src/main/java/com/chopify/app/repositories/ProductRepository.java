@@ -31,8 +31,16 @@ public class ProductRepository {
         return productDao.getAll();
     }
 
-    public LiveData<List<Product>> getByCategory(long categoryId) {
-        return productDao.getByCategory(categoryId);
+    public LiveData<List<Product>> getAllByCategory(long categoryId) {
+        return productDao.getAllByCategory(categoryId);
+    }
+
+    public LiveData<List<Product>> getAvailableByBusinessId(long businessId) {
+        return productDao.getAvailableProductsByBusinessId(businessId);
+    }
+
+    public LiveData<List<Product>> getAvailableProductsByCategoryAndBusinessId(long categoryId, long businessId) {
+        return productDao.getAvailableProductsByCategoryAndBusinessId(categoryId, businessId);
     }
 
     public int updateStock(long productId, int quantity) {

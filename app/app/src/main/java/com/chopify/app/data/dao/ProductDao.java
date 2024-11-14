@@ -28,11 +28,18 @@ public interface ProductDao {
     @Query("UPDATE products SET stock = stock - :quantity WHERE id = :productId AND stock >= :quantity")
     int updateStock(long productId, int quantity);
 
-    @Query("SELECT * FROM products WHERE stock > 0")
+    @Query("SELECT * FROM products")
     LiveData<List<Product>> getAll();
 
     @Query("SELECT * FROM products WHERE category_id = :categoryId")
-    LiveData<List<Product>> getByCategory(long categoryId);
+    LiveData<List<Product>> getAllByCategory(long categoryId);
+
+    @Query("SELECT * FROM products WHERE business_id = :businessId AND stock > 0")
+    LiveData<List<Product>> getAvailableProductsByBusinessId(long businessId);
+
+    @Query("SELECT * FROM products WHERE category_id = :categoryId AND business_id = :businessId AND stock > 0")
+    LiveData<List<Product>> getAvailableProductsByCategoryAndBusinessId(long categoryId, long businessId);
+
 
     @Query("SELECT * FROM products WHERE id IN (:productIds)")
     LiveData<List<Product>> getProductsByIds(List<Long> productIds);
