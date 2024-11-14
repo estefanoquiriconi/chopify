@@ -2,21 +2,17 @@ package com.chopify.app.ui.login;
 
 
 import android.app.Application;
-import android.content.DialogInterface;
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.chopify.app.R;
-import com.chopify.app.data.entities.Business;
+import com.chopify.app.helpers.SessionManager;
 import com.chopify.app.repositories.BusinessRepository;
 import com.chopify.app.ui.login.validation.EmailValidation;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class LoginViewModel extends AndroidViewModel {
+    private final SessionManager sessionManager= new SessionManager(getApplication().getApplicationContext());
     private final MutableLiveData<Boolean> isEmailValid = new MutableLiveData<>();
     private final MutableLiveData<Boolean> navigateToRegister = new MutableLiveData<>();
     private final MutableLiveData<Boolean> navigateToForgotPassword = new MutableLiveData<>();
@@ -64,6 +60,7 @@ public class LoginViewModel extends AndroidViewModel {
        businessRepository.findByEmail(email).observeForever(business -> {
             if (business != null  ) {
                 if (business.getEmail().equals(email) && business.getPassword().equals(password)) {
+                    sessionManager.saveBusiness(business);
                     navigateToProducts.setValue(true);
                 }else {
                  _showErrorDialog.setValue(true);

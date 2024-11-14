@@ -1,5 +1,6 @@
 package com.chopify.app.data.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -23,7 +24,7 @@ public interface PromotionDao {
     void delete(Promotion promotion);
 
     @Query("SELECT * FROM promotions WHERE id = :id")
-    Promotion getById(long id);
+    LiveData<Promotion> findById(long id);
 
     @Query("SELECT * FROM promotions WHERE active = 1 AND start_date <= :currentDate AND end_date >= :currentDate")
     List<Promotion> getActivePromotions(Date currentDate);

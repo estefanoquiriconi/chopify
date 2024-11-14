@@ -1,28 +1,24 @@
 package com.chopify.app.ui.login;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.transition.Fade;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
-
 import com.chopify.app.R;
-import com.chopify.app.databinding.ActivityAccountRegistrationBinding;
 import com.chopify.app.databinding.FragmentLoginBinding;
+import com.chopify.app.helpers.SessionManager;
 import com.chopify.app.ui.register.AccountRegistrationActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -34,12 +30,11 @@ public class LoginFragment extends Fragment {
     private LoginViewModel loginViewModel;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         biding = FragmentLoginBinding.inflate(inflater, container, false);
         View view = biding.getRoot();
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-
 
         Fade fadeTransition = new Fade();
         fadeTransition.setDuration(300);
@@ -62,9 +57,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        biding.singUp.setOnClickListener(v -> {
-            loginViewModel.onRegisterClicked();
-        });
+        biding.singUp.setOnClickListener(v -> loginViewModel.onRegisterClicked());
         loginViewModel.getNavigateToRegister().observe(getViewLifecycleOwner(), navigate -> {
             if (navigate) {
                 startActivity(new Intent(getActivity(), AccountRegistrationActivity.class));
@@ -73,11 +66,10 @@ public class LoginFragment extends Fragment {
         });
 
         /*Authenticate email*/
-        biding.singIn.setOnClickListener(v -> {
-            loginViewModel.onSignInClicked(Objects.requireNonNull(biding.emailEditTxt.getText()).toString(), Objects.requireNonNull(biding.passwordEditTxt.getText()).toString());
-        });
+        biding.singIn.setOnClickListener(v -> loginViewModel.onSignInClicked(Objects.requireNonNull(biding.emailEditTxt.getText()).toString(), Objects.requireNonNull(biding.passwordEditTxt.getText()).toString()));
         loginViewModel.getNavigateToProducts().observe(getViewLifecycleOwner(), navigate -> {
             if (navigate) {
+
                 NavController navController = Navigation.findNavController(view);
                 navController.navigate(R.id.action_loginFragment_to_navigation_products, null, new NavOptions.Builder().build());
                 loginViewModel.resetNavigationFlags();
@@ -96,9 +88,6 @@ public class LoginFragment extends Fragment {
 
 
         loginViewModel.getNavigateToForgotPassword().observe(getViewLifecycleOwner(), navigate -> {
-         /*   if (navigate) {
-
-            }*/
         });
 
         loginViewModel.getNavigateToProfile().observe(getViewLifecycleOwner(), navigate -> {
