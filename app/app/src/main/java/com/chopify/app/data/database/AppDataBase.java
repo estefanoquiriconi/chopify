@@ -135,13 +135,10 @@ public abstract class AppDataBase extends RoomDatabase {
 
             long orderID1 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","12:12:00"),"Activo"));
             long orderID2 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","13:13:00"),"Activo"));
-            long orderID3 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","06:50:00"),"Activo"));
-            long orderID4 =  orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","20:30:00"),"Activo"));
-            long orderID5 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","21:21:00"),"Activo"));
-            long orderID6 =  orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","23:30:00"),"Cancelado"));
-            long orderID7 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","20:30:00"),"Activo"));
-            long orderID8 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","21:21:00"),"Cancelado"));
-            long orderID9 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","23:30:00"),"Cancelado"));
+            long orderID3 =  orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","23:30:00"),"Cancelado"));
+            long orderID4 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","20:30:00"),"Activo"));
+            long orderID5 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","21:21:00"),"Cancelado"));
+            long orderID6 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","23:30:00"),"Cancelado"));
 
             long categoryID1 = categoryDao.insert(new Category("Cervezas"));
 
@@ -151,7 +148,14 @@ public abstract class AppDataBase extends RoomDatabase {
 
             long orderDetailID1 = orderDetailDao.insert(new OrderDetail(orderID1,productID1,2,200));
             long orderDetailID2 = orderDetailDao.insert(new OrderDetail(orderID1,productID2,3,300));
-            long orderDetailID3 = orderDetailDao.insert(new OrderDetail(orderID1,productID3,4,400));
+            long orderDetailID3 = orderDetailDao.insert(new OrderDetail(orderID4,productID3,4,400));
+            long orderDetailID4 = orderDetailDao.insert(new OrderDetail(orderID2,productID1,2,200));
+            long orderDetailID5 = orderDetailDao.insert(new OrderDetail(orderID2,productID2,3,300));
+            long orderDetailID6 = orderDetailDao.insert(new OrderDetail(orderID2,productID3,4,400));
+            long orderDetailID7 = orderDetailDao.insert(new OrderDetail(orderID3,productID1,2,200));
+            long orderDetailID8 = orderDetailDao.insert(new OrderDetail(orderID5,productID2,3,300));
+            long orderDetailID9 = orderDetailDao.insert(new OrderDetail(orderID6,productID2,3,300));
+
         });
     }
 

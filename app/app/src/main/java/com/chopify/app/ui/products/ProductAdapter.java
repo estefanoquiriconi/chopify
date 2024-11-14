@@ -38,7 +38,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListItem
 
         holder.nombreProducto.setText(producto.getName());
         holder.descripcionProducto.setText(producto.getDescription());
-        holder.precioProducto.setText(String.valueOf(producto.getPrice()));
+        if(producto.getQuantity()!=0){
+            holder.precioProducto.setText(String.valueOf(producto.getPrice()).concat(" x " + producto.getQuantity()));
+        }else{
+            holder.precioProducto.setText(String.valueOf(producto.getPrice()));
+        }
         holder.descuentoProducto.setText(String.valueOf(producto.getId())); //para luego buscar
     }
 

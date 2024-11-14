@@ -49,7 +49,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ListItemHold
         holder.fechaPedido.setText(formatoFecha.format(pedido.getOrderDate()));
         holder.horaPedido.setText(formatoHora.format(pedido.getOrderDate()));
         holder.tituloPedido.setText("destinado a " + pedido.getCustomerName());
-        holder.descripcionPedido.setText(String.valueOf(pedido.getId())); //para luego buscar
+        holder.descripcionPedido.setText("Cantidad de productos: ".concat(String.valueOf(pedido.getCantidadProductos()))); //para luego buscar
         holder.estadoPedido.setText(pedido.getStatus());
     }
 

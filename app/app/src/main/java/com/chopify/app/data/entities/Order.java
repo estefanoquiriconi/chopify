@@ -47,7 +47,7 @@ public class Order {
     @Ignore
     private String customerName;
     @Ignore
-    private String cantidadProductos;
+    private int cantidadProductos;
 
     public Order(){
 
@@ -117,11 +117,11 @@ public class Order {
         this.customerName = customerName;
     }
 
-    public String getCantidadProductos() {
+    public int getCantidadProductos() {
         return cantidadProductos;
     }
 
-    public void setCantidadProductos(String cantidadProductos) {
+    public void setCantidadProductos(int cantidadProductos) {
         this.cantidadProductos = cantidadProductos;
     }
 }

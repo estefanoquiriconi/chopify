@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.chopify.app.R;
 import com.chopify.app.data.dao.OrderDetailDao;
 import com.chopify.app.data.entities.Order;
+import com.chopify.app.data.entities.OrderDetail;
 import com.chopify.app.data.entities.Product;
 import com.chopify.app.ui.products.ProductAdapter;
 
@@ -34,6 +35,8 @@ public class OrderDetailFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProductAdapter adaptador;
     private List<Product> listaProductos = new ArrayList<>();
+    private Long orderId;
+
 
     public static OrderDetailFragment newInstance() {
         return new OrderDetailFragment();
@@ -50,17 +53,32 @@ public class OrderDetailFragment extends Fragment {
         ).get(OrderDetailViewModel.class);
 
         if (getArguments() != null) {
-            Long orderId = getArguments().getLong("orderId");
+            orderId = getArguments().getLong("orderId");
             Log.d("OrderDetailDebug", "onCreateView: el id del pedido es " + orderId);
         }
 
         //recycler view
         recyclerView = view.findViewById(R.id.rvProductosDelPedido);
-
-
         adaptador = new ProductAdapter(getContext(), listaProductos);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adaptador);
+
+        orderDetailViewModel.getProductsByOrderId(this.orderId).observe(getViewLifecycleOwner(), productos -> {
+            if (productos != null) {
+                listaProductos.clear();
+                listaProductos.addAll(productos);
+                adaptador.notifyDataSetChanged();
+            }
+        });
+
+        orderDetailViewModel.getTotalPedido(orderId).observe(getViewLifecycleOwner(), total -> {
+            TextView tvTotalPedido = view.findViewById(R.id.tvTotalPedido);
+            if (total != null) {
+                tvTotalPedido.setText("Total del pedido: $" + String.format("%.2f", total));
+            } else {
+                tvTotalPedido.setText("Total del pedido: $0.00");
+            }
+        });
 
         return view;
     }

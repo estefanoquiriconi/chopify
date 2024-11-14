@@ -34,4 +34,6 @@ public interface ProductDao {
     @Query("SELECT * FROM products WHERE category_id = :categoryId")
     LiveData<List<Product>> getByCategory(long categoryId);
 
+    @Query("SELECT * FROM products WHERE id IN (:productIds)")
+    LiveData<List<Product>> getProductsByIds(List<Long> productIds);
 }

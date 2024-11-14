@@ -3,6 +3,7 @@ package com.chopify.app.data.entities;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "products",
@@ -31,6 +32,9 @@ public class Product {
     @ColumnInfo(name = "category_id")
     private long categoryId;
 
+    @Ignore
+    private int quantity;
+
     public Product() {
     }
 
@@ -41,6 +45,7 @@ public class Product {
         this.stock = stock;
         this.businessId = businessId;
         this.categoryId = categoryId;
+        this.quantity =0;
     }
 
     public long getId() {
@@ -97,5 +102,13 @@ public class Product {
 
     public void setCategoryId(long categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
