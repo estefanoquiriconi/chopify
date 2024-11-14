@@ -23,6 +23,18 @@ public class Delivery {
     private String phone;
     private String address;
 
+    public Delivery() {
+    }
+
+    public Delivery(String lastName, String firstName, String email, String dni, String phone, String address) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email = email;
+        this.dni = dni;
+        this.phone = phone;
+        this.address = address;
+    }
+
     public long getId() {
         return id;
     }

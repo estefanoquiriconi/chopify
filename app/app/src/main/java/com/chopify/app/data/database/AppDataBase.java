@@ -1,6 +1,7 @@
 package com.chopify.app.data.database;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -35,6 +36,11 @@ import com.chopify.app.data.entities.ProductPromotion;
 import com.chopify.app.data.entities.Promotion;
 import com.chopify.app.utils.DateConverter;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -109,15 +115,48 @@ public abstract class AppDataBase extends RoomDatabase {
         executor.execute(() -> {
             AddressDao addressDao = dataBase.addressDao();
             BusinessDao businessDao = dataBase.businessDao();
+            OrderDao orderDao = dataBase.orderDao();
+            CustomerDao customerDao = dataBase.customerDao();
+            DeliveryDao deliveryDao = dataBase.deliveryDao();
 
             long addressID1 = addressDao.insert(new Address("Av. Libertador", -27.763893, -64.243792));
             long addressID2 = addressDao.insert(new Address("Av. Independencia", -27.791204, -64.269635));
+            long addressID3 = addressDao.insert(new Address("Av. Belgrano", -27.789374, -64.260253));
 
-            businessDao.insert(new Business("cerveza_store@mail.com", "password1", "20-12345678-1",
+            long businessID1 = businessDao.insert(new Business("cerveza_store@mail.com", "password1", "20-12345678-1",
                     "Cerveza Store", "123456789", addressID1));
-            businessDao.insert(new Business("vinos_finos@mail.com", "password2", "30-87654321-2",
+            long businessID2 =businessDao.insert(new Business("vinos_finos@mail.com", "password2", "30-87654321-2",
                     "Vinos Finos", "987654321", addressID2));
+
+            long deliveryID1 = deliveryDao.insert(new Delivery("De Yebra", "Marcelo", "marcelo@gmail.com", "33323122", "333231222","La Plata 554"));
+            long customerID1 = customerDao.insert(new Customer("Martin", "Koleff", "martincito@gmail.com", "33933333", crearFecha("09:11:2004","12:12"), addressID3));
+
+            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","12:12:00"),"Activo"));
+            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","13:13:00"),"Activo"));
+            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","06:50:00"),"Activo"));
+            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","20:30:00"),"Activo"));
+            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","21:21:00"),"Activo"));
+            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","23:30:00"),"En Preparacion"));
+            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","20:30:00"),"En Preparacion"));
+            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","21:21:00"),"Cancelado"));
+            orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","23:30:00"),"Cancelado"));
         });
+    }
+
+    private static Date crearFecha(String fecha, String hora) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd:MM:yyyy HH:mm:ss", Locale.getDefault());
+            sdf.setLenient(false);
+            Date resultado = sdf.parse(fecha + " " + hora);
+            // Para debug
+            SimpleDateFormat formatoDebug = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+            Log.d("DateDebug", "Fecha creada: " + formatoDebug.format(resultado));
+
+            return resultado;
+        } catch (ParseException e) {
+            Log.e("DateError", "Error al parsear fecha: " + e.getMessage());
+            return null;
+        }
     }
 
 }

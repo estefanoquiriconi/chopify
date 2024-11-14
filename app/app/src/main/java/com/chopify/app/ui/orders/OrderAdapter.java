@@ -1,18 +1,23 @@
 package com.chopify.app.ui.orders;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chopify.app.R;
 import com.chopify.app.data.entities.Order;
+
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ListItemHolder> {
 
@@ -20,8 +25,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ListItemHold
     private Context context;
     private int fragmentId;
 
-    public OrderAdapter(Context context, List<Order> pedidos, int fragmentId) {
-        this.pedidos = pedidos;
+    public OrderAdapter(Context context, List<Order> listaPedidos, int fragmentId) {
+        this.pedidos = listaPedidos;
         this.context = context;
         this.fragmentId = fragmentId;
     }
@@ -38,9 +43,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ListItemHold
     public void onBindViewHolder(@NonNull ListItemHolder holder, int position) {
         Order pedido = pedidos.get(position);
 
-        holder.fechaPedido.setText(pedido.getOrderDate().getDate() + "/" + pedido.getOrderDate().getDate());
-        holder.horaPedido.setText(pedido.getOrderDate().getHours() + ":" + pedido.getOrderDate().getMinutes());
-        holder.tituloPedido.setText(String.valueOf(pedido.getCustomerId())); //para luego buscar
+        SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM", Locale.getDefault());
+
+        holder.fechaPedido.setText(formatoFecha.format(pedido.getOrderDate()));
+        holder.horaPedido.setText(formatoHora.format(pedido.getOrderDate()));
+        holder.tituloPedido.setText("destinado a " + pedido.getCustomerName());
         holder.descripcionPedido.setText(String.valueOf(pedido.getId())); //para luego buscar
         holder.estadoPedido.setText(pedido.getStatus());
     }
@@ -72,11 +80,16 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ListItemHold
 
         @Override
         public void onClick(View view) {
-            if(fragmentId == R.id.navigation_order){
-                NavController navController = Navigation.findNavController(view);
-                navController.navigate(R.id.action_orderFragment_to_orderDetailFragment);
-            }
+            if (fragmentId == R.id.navigation_order) {
+                Order pedidoSeleccionado = pedidos.get(getAdapterPosition());
 
+                Bundle bundle = new Bundle();
+                bundle.putLong("orderId", pedidoSeleccionado.getId());
+
+                NavController navController = Navigation.findNavController(view);
+                navController.navigate(R.id.action_orderFragment_to_orderDetailFragment, bundle);
+            }
         }
+
     }
 }

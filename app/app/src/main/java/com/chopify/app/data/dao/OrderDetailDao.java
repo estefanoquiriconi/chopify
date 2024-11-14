@@ -1,5 +1,6 @@
 package com.chopify.app.data.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -17,6 +18,6 @@ public interface OrderDetailDao {
     List<Long> insertAll(List<OrderDetail> details);
 
     @Query("SELECT * FROM order_details WHERE order_id = :orderId")
-    List<OrderDetail> getOrderDetails(long orderId);
+    LiveData<List<OrderDetail>> getOrderDetails(long orderId);
 
 }
