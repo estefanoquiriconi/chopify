@@ -12,98 +12,190 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:orientation="vertical"
-
-       >
-
+            android:padding="20dp">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/business_profile_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="80dp"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginBottom="20dp"
                 android:contentDescription="@string/business_profile_image"
-                android:src="@drawable/negocio"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_logo"
                 app:shapeAppearanceOverlay="@style/CircleImage" />
 
             <TextView
                 android:id="@+id/business_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="50dp"
                 android:fontFamily="@font/nunito_bold"
                 android:text="@string/business_name"
+                android:textAlignment="center"
+                android:textAllCaps="true"
                 android:textColor="@color/verde_lima"
-                android:textSize="24sp" />
+                android:textSize="30sp" />
 
-
-            <TextView
-                android:id="@+id/business_cuit"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/cuit"
-                android:textColor="@color/blanco_humo"
-                android:textSize="16sp" />
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_email_24"
+                    tools:ignore="ContentDescription" />
 
-            <TextView
-                android:id="@+id/business_phone"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Email: "
+                    android:textColor="@color/blanco_humo"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/business_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/email"
+                    android:textColor="@color/blanco_humo"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/phone"
-                android:textColor="@color/blanco_humo"
-                android:textSize="16sp" />
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-            <TextView
-                android:id="@+id/business_email"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_location_pin_24"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Dirección: "
+                    android:textColor="@color/blanco_humo"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/business_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/location"
+                    android:textColor="@color/blanco_humo"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/email"
-                android:textColor="@color/blanco_humo"
-                android:textSize="16sp" />
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_phone_24"
+                    tools:ignore="ContentDescription" />
 
-            <TextView
-                android:id="@+id/business_location"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Teléfono: "
+                    android:textColor="@color/blanco_humo"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/business_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/phone"
+                    android:textColor="@color/blanco_humo"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/location"
-                android:textColor="@color/blanco_humo"
-                android:textSize="16sp" />
+                android:layout_marginBottom="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_business_24"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Cuit: "
+                    android:textColor="@color/blanco_humo"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/business_cuit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/cuit"
+                    android:textColor="@color/blanco_humo"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
             <ImageButton
                 android:id="@+id/sesionOut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/negro_carbon"
                 android:contentDescription="out"
                 android:src="@drawable/out"
-                tools:ignore="HardcodedText"
-                android:backgroundTint="@color/negro_carbon"/>
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
-
-
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

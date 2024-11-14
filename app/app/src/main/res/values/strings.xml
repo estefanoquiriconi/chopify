@@ -46,10 +46,10 @@
 
     <string name="business_profile_image">negocio descripcion\n</string>
     <string name="business_name">Chopify\n</string>
-    <string name="cuit">2034563089\n</string>
-    <string name="phone">154560340\n</string>
-    <string name="email">chopify@business.com\n</string>
-    <string name="location">av.Roca 678\n</string>
+    <string name="cuit">2034563089</string>
+    <string name="phone">154560340</string>
+    <string name="email">chopify@business.com</string>
+    <string name="location">av.Roca 678</string>
     <string name="my_location">My location</string>
     <string name="pedidos">Pedidos</string>
     <string name="data_product">Datos del Producto\n</string>
