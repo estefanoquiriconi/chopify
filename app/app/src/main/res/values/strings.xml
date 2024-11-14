@@ -52,9 +52,13 @@
     <string name="location">av.Roca 678\n</string>
     <string name="my_location">My location</string>
     <string name="pedidos">Pedidos</string>
-    <string name="title_orders">Pedidos</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="data_product">Datos del Producto\n</string>
+    <string name="name">Nombre\n</string>
+    <string name="description">Descripcion</string>
+    <string name="price">Precio\n</string>
+    <string name="stock">Stock</string>
+    <string name="category">Categoria</string>
     <string name="ver_todos_pedidos">ver todos los pedidos</string>
     <string name="search">Buscar</string>
+    <string name="title_orders">Pedidos</string>
 </resources>

@@ -122,7 +122,6 @@ public abstract class AppDataBase extends RoomDatabase {
             long addressID1 = addressDao.insert(new Address("Av. Libertador", -27.763893, -64.243792));
             long addressID2 = addressDao.insert(new Address("Av. Independencia", -27.791204, -64.269635));
             long addressID3 = addressDao.insert(new Address("Av. Belgrano", -27.789374, -64.260253));
-
             long businessID1 = businessDao.insert(new Business("cerveza_store@mail.com", "password1", "20-12345678-1",
                     "Cerveza Store", "123456789", addressID1));
             long businessID2 =businessDao.insert(new Business("vinos_finos@mail.com", "password2", "30-87654321-2",

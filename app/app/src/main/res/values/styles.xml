@@ -4,4 +4,8 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+    <style name="CustomAlertDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="backgroundColor">@color/negro_carbon</item>
+        <item name="android:textColor">@color/verde_lima</item>
+    </style>
 </resources>

@@ -42,6 +42,7 @@ dependencies {
 
     //Room
     implementation(libs.room.runtime)
+    implementation(libs.room.common)
     annotationProcessor(libs.room.compiler)
 
     implementation(libs.appcompat)

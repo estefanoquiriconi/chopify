@@ -1,10 +1,12 @@
 package com.chopify.app.ui.login;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.transition.Fade;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,16 +24,19 @@ import com.chopify.app.R;
 import com.chopify.app.databinding.ActivityAccountRegistrationBinding;
 import com.chopify.app.databinding.FragmentLoginBinding;
 import com.chopify.app.ui.register.AccountRegistrationActivity;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import java.util.Objects;
 
 
 public class LoginFragment extends Fragment {
-    private FragmentLoginBinding binding;
+    private FragmentLoginBinding biding;
     private LoginViewModel loginViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentLoginBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
+        biding = FragmentLoginBinding.inflate(inflater, container, false);
+        View view = biding.getRoot();
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
@@ -43,21 +48,21 @@ public class LoginFragment extends Fragment {
 
         // Observa los cambios en la validación de email
         loginViewModel.getIsEmailValid().observe(getViewLifecycleOwner(), isValid -> {
-            binding.emailEditTxt.setError(isValid ? null : getString(R.string.invalid_email));
+            biding.emailEditTxt.setError(isValid ? null : getString(R.string.invalid_email));
 
             if (isValid) {
-                binding.editUserName.setEndIconDrawable(R.drawable.check_24);
-                binding.editUserName.setEndIconTintList(
+                biding.editUserName.setEndIconDrawable(R.drawable.check_24);
+                biding.editUserName.setEndIconTintList(
                         ContextCompat.getColorStateList(requireContext(), R.color.negro_carbon)
                 );
             } else {
-                binding.editUserName.setEndIconTintList(
+                biding.editUserName.setEndIconTintList(
                         ContextCompat.getColorStateList(requireContext(), android.R.color.transparent)
                 );
             }
         });
 
-        binding.singUp.setOnClickListener(v -> {
+        biding.singUp.setOnClickListener(v -> {
             loginViewModel.onRegisterClicked();
         });
         loginViewModel.getNavigateToRegister().observe(getViewLifecycleOwner(), navigate -> {
@@ -67,14 +72,28 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        binding.singIn.setOnClickListener(v -> {loginViewModel.onSignInClicked();});
+        /*Authenticate email*/
+        biding.singIn.setOnClickListener(v -> {
+            loginViewModel.onSignInClicked(Objects.requireNonNull(biding.emailEditTxt.getText()).toString(), Objects.requireNonNull(biding.passwordEditTxt.getText()).toString());
+        });
         loginViewModel.getNavigateToProducts().observe(getViewLifecycleOwner(), navigate -> {
             if (navigate) {
-               NavController navController = Navigation.findNavController(view);
+                NavController navController = Navigation.findNavController(view);
                 navController.navigate(R.id.action_loginFragment_to_navigation_products, null, new NavOptions.Builder().build());
                 loginViewModel.resetNavigationFlags();
             }
-                });
+        });
+        loginViewModel.getShowErrorDialog().observe(getViewLifecycleOwner(), show -> {
+            if (show) {
+                new MaterialAlertDialogBuilder(requireContext(),R.style.CustomAlertDialogTheme)
+                        .setTitle("Error al ingresar")
+                        .setMessage("Las credenciales ingresadas son incorrectas. Por favor, inténtalo de nuevo.")
+                        .setPositiveButton(getString(R.string.aceptar), (dialog, which) -> dialog.dismiss())
+                        .show();
+                loginViewModel.resetNavigationFlags();
+            }
+        } );
+
 
         loginViewModel.getNavigateToForgotPassword().observe(getViewLifecycleOwner(), navigate -> {
          /*   if (navigate) {
@@ -90,7 +109,7 @@ public class LoginFragment extends Fragment {
         });
 
         // Configura el TextWatcher en el campo de email
-        binding.emailEditTxt.addTextChangedListener(new TextWatcher() {
+        biding.emailEditTxt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
