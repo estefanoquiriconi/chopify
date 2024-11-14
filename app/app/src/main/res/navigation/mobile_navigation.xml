@@ -17,10 +17,11 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.chopify.app.ui.login.LoginFragment"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_navigation_products"
-            app:destination="@id/navigation" />
+            app:destination="@id/navigation"
+            />
     </fragment>
     <fragment
         android:id="@+id/productAddDiscountFragment"
@@ -31,7 +32,8 @@
         android:name="com.chopify.app.ui.products.ProductCreateEditFragment"
         android:label="ProductAddDiscountFragment" />
 
-    <navigation android:id="@+id/navigation"
+    <navigation
+        android:id="@+id/navigation"
         app:startDestination="@id/navigation_products">
         <fragment
             android:id="@+id/navigation_business"
@@ -43,8 +45,9 @@
             <action
                 android:id="@+id/action_orderFragment_to_orderHistoryFragment"
                 app:destination="@id/orderHistoryFragment" />
-            <action  android:id="@+id/action_orderFragment_to_orderDetailFragment"
-                app:destination="@id/orderDetailFragment"/>
+            <action
+                android:id="@+id/action_orderFragment_to_orderDetailFragment"
+                app:destination="@id/orderDetailFragment" />
         </fragment>
         <fragment
             android:id="@+id/navigation_products"
@@ -59,6 +62,6 @@
     <fragment
         android:id="@+id/orderDetailFragment"
         android:name="com.chopify.app.ui.orders.OrderDetailFragment"
-        tools:layout="@layout/fragment_order_detail"/>
+        tools:layout="@layout/fragment_order_detail" />
 
 </navigation>
