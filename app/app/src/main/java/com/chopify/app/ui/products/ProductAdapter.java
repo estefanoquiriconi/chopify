@@ -36,10 +36,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListItem
     @Override
     public void onBindViewHolder(@NonNull ProductAdapter.ListItemHolder holder, int position) {
         Product product = products.get(position);
-        holder.productImage.setImageResource(getImage((int) product.getCategoryId()));
         holder.productName.setText(product.getName());
         holder.productDescription.setText(product.getDescription());
-        holder.productPrice.setText(String.valueOf(product.getPrice()));
+        if(product.getQuantity()!=0){
+            holder.productPrice.setText(String.valueOf(product.getPrice()).concat(" x " + product.getQuantity()));
+        }else{
+            holder.productPrice.setText(String.valueOf(product.getPrice()));
+        }
+        holder.productImage.setImageResource(getImage((int) product.getCategoryId()));
         holder.productDiscount.setText(String.valueOf(product.getId()));
     }
 

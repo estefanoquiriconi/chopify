@@ -39,6 +39,10 @@ public class ProductRepository {
         return productDao.updateStock(productId, quantity);
     }
 
+    public LiveData<List<Product>> getProductsByIds(List<Long> productIds) {
+        return productDao.getProductsByIds(productIds);
+    }
+
     public void insert(Product product) {
         executor.execute(() -> productDao.insert(product));
     }

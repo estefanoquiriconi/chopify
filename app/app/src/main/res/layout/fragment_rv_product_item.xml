@@ -8,7 +8,6 @@
     android:padding="8dp"
     android:background="@color/negro_carbon">
 
-    <!-- Contenido existente sin cambios -->
     <ImageView
         android:id="@+id/imgProductItem"
         android:layout_width="98dp"
@@ -16,6 +15,7 @@
         android:layout_marginTop="8dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
+        android:src="@drawable/img_default_drink"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,7 +32,7 @@
         android:textColor="@color/blanco_humo"
         android:text="Title"
         app:layout_constraintStart_toEndOf="@id/imgProductItem"
-        app:layout_constraintEnd_toStartOf="@id/priceProductItem"
+        app:layout_constraintEnd_toStartOf="@id/priceCantProductItem"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -46,11 +46,11 @@
         android:text="description"
         android:textColor="@color/blanco_humo"
         app:layout_constraintStart_toEndOf="@id/imgProductItem"
-        app:layout_constraintEnd_toStartOf="@id/priceProductItem"
+        app:layout_constraintEnd_toStartOf="@id/priceCantProductItem"
         app:layout_constraintTop_toBottomOf="@id/nameProductItem" />
 
     <TextView
-        android:id="@+id/priceProductItem"
+        android:id="@+id/priceCantProductItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
@@ -60,7 +60,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.5"
-        tools:text="$50.00" />
+        tools:text="$50.00 x 2" />
 
     <TextView
         android:id="@+id/discountLabelProductItem"
@@ -71,12 +71,11 @@
         android:fontFamily="@font/nunito"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/priceProductItem"
+        app:layout_constraintBottom_toTopOf="@id/priceCantProductItem"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3"
         tools:text="-20%" />
 
-    <!-- Línea divisora -->
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
