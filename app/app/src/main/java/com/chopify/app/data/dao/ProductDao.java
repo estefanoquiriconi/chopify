@@ -1,5 +1,6 @@
 package com.chopify.app.data.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -22,17 +23,15 @@ public interface ProductDao {
     void delete(Product product);
 
     @Query("SELECT * FROM products WHERE id = :id")
-    Product getById(long id);
-
-    @Query("SELECT * FROM products WHERE business_id = :businessId")
-    List<Product> getByBusiness(long businessId);
+    LiveData<Product> getById(long id);
 
     @Query("UPDATE products SET stock = stock - :quantity WHERE id = :productId AND stock >= :quantity")
     int updateStock(long productId, int quantity);
 
-    @Query("SELECT * FROM products WHERE category_id = :categoryId")
-    List<Product> getByCategory(long categoryId);
+    @Query("SELECT * FROM products WHERE stock > 0")
+    LiveData<List<Product>> getAll();
 
-    @Query("SELECT * FROM products WHERE stock > 0 AND business_id = :businessId")
-    List<Product> getAvailableProducts(long businessId);
+    @Query("SELECT * FROM products WHERE category_id = :categoryId")
+    LiveData<List<Product>> getByCategory(long categoryId);
+
 }

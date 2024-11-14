@@ -37,6 +37,7 @@ public class BusinessRepository {
         return businessDao.findByEmailWithAddress(email);
     }
 
+
     public void insert(Business business) {
         executor.execute(() -> businessDao.insert(business));
     }
