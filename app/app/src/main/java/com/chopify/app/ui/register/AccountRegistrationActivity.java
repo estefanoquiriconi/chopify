@@ -12,6 +12,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.chopify.app.R;
 import com.chopify.app.databinding.ActivityAccountRegistrationBinding;
 
+import java.util.Objects;
+
 public class AccountRegistrationActivity extends AppCompatActivity {
 
     ActivityAccountRegistrationBinding binding;
@@ -29,7 +31,12 @@ public class AccountRegistrationActivity extends AppCompatActivity {
         });
 
         binding.btnContinue.setOnClickListener(v -> {
-            startActivity(new Intent(this, BusinessRegistrationActivity.class));
+            String email = Objects.requireNonNull(binding.etEmail.getText()).toString().trim();
+            String password = Objects.requireNonNull(binding.etPassword.getText()).toString().trim();
+            Intent intent = new Intent(this, BusinessRegistrationActivity.class);
+            intent.putExtra("email", email);
+            intent.putExtra("password", password);
+            startActivity(intent);
             finish();
         });
 

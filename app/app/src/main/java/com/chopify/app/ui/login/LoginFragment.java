@@ -71,8 +71,8 @@ public class LoginFragment extends Fragment {
                 loginViewModel.resetNavigationFlags();
             }
         });
-        Log.i("AppDataBase", "Inserted Address ID: " );
-        Log.i("AppDataBase", "Inserted Business ID: " );
+
+        /*Authenticate email*/
         biding.singIn.setOnClickListener(v -> {
             loginViewModel.onSignInClicked(Objects.requireNonNull(biding.emailEditTxt.getText()).toString(), Objects.requireNonNull(biding.passwordEditTxt.getText()).toString());
         });
@@ -81,19 +81,19 @@ public class LoginFragment extends Fragment {
                 NavController navController = Navigation.findNavController(view);
                 navController.navigate(R.id.action_loginFragment_to_navigation_products, null, new NavOptions.Builder().build());
                 loginViewModel.resetNavigationFlags();
-            } else {
-                new MaterialAlertDialogBuilder(requireContext())
-                        .setTitle("Error Al ingresar")
-                        .setMessage("Las credenciales ingresadas son incorrectas. Por favor, inténtalo de nuevo.")
-                        .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        })
-                        .show();
             }
         });
+        loginViewModel.getShowErrorDialog().observe(getViewLifecycleOwner(), show -> {
+            if (show) {
+                new MaterialAlertDialogBuilder(requireContext(),R.style.CustomAlertDialogTheme)
+                        .setTitle("Error al ingresar")
+                        .setMessage("Las credenciales ingresadas son incorrectas. Por favor, inténtalo de nuevo.")
+                        .setPositiveButton(getString(R.string.aceptar), (dialog, which) -> dialog.dismiss())
+                        .show();
+                loginViewModel.resetNavigationFlags();
+            }
+        } );
+
 
         loginViewModel.getNavigateToForgotPassword().observe(getViewLifecycleOwner(), navigate -> {
          /*   if (navigate) {
