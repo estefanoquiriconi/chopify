@@ -38,10 +38,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListItem
         Product product = products.get(position);
         holder.productName.setText(product.getName());
         holder.productDescription.setText(product.getDescription());
-        if(product.getQuantity()!=0){
-            holder.productPrice.setText(String.valueOf(product.getPrice()).concat(" x " + product.getQuantity()));
-        }else{
-            holder.productPrice.setText(String.valueOf(product.getPrice()));
+        if (product.getQuantity() != 0) {
+            holder.productPrice.setText("$".concat(String.valueOf(product.getPrice()).concat(" x " + product.getQuantity())));
+        } else {
+            holder.productPrice.setText("$".concat(String.valueOf(product.getPrice())));
         }
         holder.productImage.setImageResource(getImage((int) product.getCategoryId()));
         holder.productDiscount.setText(String.valueOf(product.getId()));
@@ -71,7 +71,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListItem
             productImage = itemView.findViewById(R.id.imgProductItem);
             productName = itemView.findViewById(R.id.nameProductItem);
             productDescription = itemView.findViewById(R.id.descriptionProductItem);
-            productPrice = itemView.findViewById(R.id.priceProductItem);
+            productPrice = itemView.findViewById(R.id.priceCantProductItem);
             productDiscount = itemView.findViewById(R.id.discountLabelProductItem);
         }
 
