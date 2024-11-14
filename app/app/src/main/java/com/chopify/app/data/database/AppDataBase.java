@@ -121,31 +121,56 @@ public abstract class AppDataBase extends RoomDatabase {
             DeliveryDao deliveryDao = dataBase.deliveryDao();
             ProductDao productDao = dataBase.productDao();
             CategoryDao categoryDao = dataBase.categoryDao();
-
+          
+            //Categorías
+            long categoryBeerId = categoryDao.insert(new Category("Cerveza"));
+            long categoryWineId = categoryDao.insert(new Category("Vino"));
+            long categoryVodkaId = categoryDao.insert(new Category("Vodka"));
+            long categoryFernetId = categoryDao.insert(new Category("Fernet"));
+          
+            //Direcciones
             long addressID1 = addressDao.insert(new Address("Av. Libertador", -27.763893, -64.243792));
             long addressID2 = addressDao.insert(new Address("Av. Independencia", -27.791204, -64.269635));
             long addressID3 = addressDao.insert(new Address("Av. Belgrano", -27.789374, -64.260253));
+          
+            //Negocios
             long businessID1 = businessDao.insert(new Business("cerveza_store@mail.com", "password1", "20-12345678-1",
                     "Cerveza Store", "123456789", addressID1));
             long businessID2 =businessDao.insert(new Business("vinos_finos@mail.com", "password2", "30-87654321-2",
                     "Vinos Finos", "987654321", addressID2));
-
+          
+            //Deliverty
             long deliveryID1 = deliveryDao.insert(new Delivery("De Yebra", "Marcelo", "marcelo@gmail.com", "33323122", "333231222","La Plata 554"));
+            //Cliente
             long customerID1 = customerDao.insert(new Customer("Martin", "Koleff", "martincito@gmail.com", "33933333", crearFecha("09:11:2004","12:12"), addressID3));
+        
+            //Productos
+            productDao.insert(new Product("Quilmes", "El sabor del encuentro", 2000, 10, businessID1, categoryBeerId));
+            productDao.insert(new Product("Branca", "El sabor del Branca", 80000, 5, businessID1, categoryFernetId));
+            productDao.insert(new Product("Corona", "Cerveza Corona", 2200, 15, businessID1, categoryBeerId));
+            productDao.insert(new Product("Amstel", "Cerveza Amstel", 2300, 8, businessID1, categoryBeerId));
+            productDao.insert(new Product("Cerveza Patagonia", "Cerveza Patagonia", 2500, 12, businessID1, categoryBeerId));
 
+            productDao.insert(new Product("Malbec", "Vino Malbec de Mendoza", 3500, 20, businessID1, categoryWineId));
+            productDao.insert(new Product("Cabernet Sauvignon", "Vino Cabernet Sauvignon", 4000, 8, businessID1, categoryWineId));
+            productDao.insert(new Product("Chardonnay", "Vino Chardonnay", 3000, 18, businessID1, categoryWineId));
+
+            productDao.insert(new Product("Absolut", "Vodka Absolut", 5000, 25, businessID1, categoryVodkaId));
+            productDao.insert(new Product("Smirnoff", "Vodka Smirnoff", 4500, 30, businessID1, categoryVodkaId));
+          
+            long productID1 = productDao.insert(new Product("Budweiser","Cerveza",200,20,businessID2,categoryBeerId));
+            long productID2 = productDao.insert(new Product("Imperial","Cerveza",300,30,businessID2,categoryBeerId));
+            long productID3 = productDao.insert(new Product("Brahma","Cerveza",400,40,businessID2,categoryBeerId));
+
+            //Pedidos
             long orderID1 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","12:12:00"),"Activo"));
             long orderID2 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","13:13:00"),"Activo"));
             long orderID3 =  orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","23:30:00"),"Cancelado"));
             long orderID4 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","20:30:00"),"Activo"));
             long orderID5 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","21:21:00"),"Cancelado"));
             long orderID6 = orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","23:30:00"),"Cancelado"));
-
-            long categoryID1 = categoryDao.insert(new Category("Cervezas"));
-
-            long productID1 = productDao.insert(new Product("Budweiser","Cerveza",200,20,businessID2,categoryID1));
-            long productID2 = productDao.insert(new Product("Imperial","Cerveza",300,30,businessID2,categoryID1));
-            long productID3 = productDao.insert(new Product("Brahma","Cerveza",400,40,businessID2,categoryID1));
-
+        
+            //Detalles
             long orderDetailID1 = orderDetailDao.insert(new OrderDetail(orderID1,productID1,2,200));
             long orderDetailID2 = orderDetailDao.insert(new OrderDetail(orderID1,productID2,3,300));
             long orderDetailID3 = orderDetailDao.insert(new OrderDetail(orderID4,productID3,4,400));
@@ -155,7 +180,7 @@ public abstract class AppDataBase extends RoomDatabase {
             long orderDetailID7 = orderDetailDao.insert(new OrderDetail(orderID3,productID1,2,200));
             long orderDetailID8 = orderDetailDao.insert(new OrderDetail(orderID5,productID2,3,300));
             long orderDetailID9 = orderDetailDao.insert(new OrderDetail(orderID6,productID2,3,300));
-
+          
         });
     }
 

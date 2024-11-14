@@ -31,7 +31,7 @@ public class Product {
     private long businessId;
     @ColumnInfo(name = "category_id")
     private long categoryId;
-
+  
     @Ignore
     private int quantity;
 
