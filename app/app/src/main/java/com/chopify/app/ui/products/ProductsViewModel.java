@@ -1,19 +1,26 @@
 package com.chopify.app.ui.products;
 
+import android.app.Application;
+
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-public class ProductsViewModel extends ViewModel {
+import com.chopify.app.data.entities.Product;
+import com.chopify.app.repositories.ProductRepository;
 
-    private final MutableLiveData<String> mText;
+import java.util.List;
 
-    public ProductsViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is products fragment");
+public class ProductsViewModel extends AndroidViewModel {
+
+    private final ProductRepository productRepository;
+
+    public ProductsViewModel(Application application){
+        super(application);
+        this.productRepository = new ProductRepository(application);
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<List<Product>> getProducts() {
+        return this.productRepository.getAll();
     }
+
 }

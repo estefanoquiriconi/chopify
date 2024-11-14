@@ -1,5 +1,6 @@
 package com.chopify.app.ui.products;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +18,11 @@ import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListItemHolder> {
 
-    private List<Product> productos;
-    private Context context;
+    private List<Product> products;
+    private final Context context;
 
-    public ProductAdapter(Context context, List<Product> productos) {
-        this.productos = productos;
+    public ProductAdapter(Context context, List<Product> products) {
+        this.products = products;
         this.context = context;
     }
 
@@ -29,46 +30,65 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListItem
     @Override
     public ProductAdapter.ListItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context).inflate(R.layout.fragment_rv_product_item, parent, false);
-        return new ProductAdapter.ListItemHolder(itemView);
+        return new ListItemHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductAdapter.ListItemHolder holder, int position) {
-        Product producto = productos.get(position);
-
-        holder.nombreProducto.setText(producto.getName());
-        holder.descripcionProducto.setText(producto.getDescription());
-        holder.precioProducto.setText(String.valueOf(producto.getPrice()));
-        holder.descuentoProducto.setText(String.valueOf(producto.getId())); //para luego buscar
+        Product product = products.get(position);
+        holder.productImage.setImageResource(getImage((int) product.getCategoryId()));
+        holder.productName.setText(product.getName());
+        holder.productDescription.setText(product.getDescription());
+        holder.productPrice.setText(String.valueOf(product.getPrice()));
+        holder.productDiscount.setText(String.valueOf(product.getId()));
     }
 
     @Override
     public int getItemCount() {
-        return productos != null ? productos.size() : 0;
+        return products != null ? products.size() : 0;
     }
 
-    public class ListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateProducts(List<Product> products) {
+        this.products = products;
+        notifyDataSetChanged();
+    }
 
-        ImageView imagenProducto;
-        TextView nombreProducto;
-        TextView descripcionProducto;
-        TextView precioProducto;
-        TextView descuentoProducto;
+    public static class ListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        ImageView productImage;
+        TextView productName;
+        TextView productDescription;
+        TextView productPrice;
+        TextView productDiscount;
 
         public ListItemHolder(@NonNull View itemView) {
             super(itemView);
-
-             imagenProducto = itemView.findViewById(R.id.imgProductItem);
-             nombreProducto= itemView.findViewById(R.id.nameProductItem);
-             descripcionProducto= itemView.findViewById(R.id.descriptionProductItem);
-             precioProducto= itemView.findViewById(R.id.priceProductItem);
-             descuentoProducto= itemView.findViewById(R.id.discountLabelProductItem);
+            productImage = itemView.findViewById(R.id.imgProductItem);
+            productName = itemView.findViewById(R.id.nameProductItem);
+            productDescription = itemView.findViewById(R.id.descriptionProductItem);
+            productPrice = itemView.findViewById(R.id.priceProductItem);
+            productDiscount = itemView.findViewById(R.id.discountLabelProductItem);
         }
 
         @Override
         public void onClick(View view) {
 
+        }
+    }
+
+    public int getImage(int categoryId) {
+        switch (categoryId) {
+            case 1:
+                return R.drawable.cerveza;
+            case 2:
+                return R.drawable.vino;
+            case 3:
+                return R.drawable.vodka;
+            case 4:
+                return R.drawable.fernet;
+            default:
+                return 0;
         }
     }
 }

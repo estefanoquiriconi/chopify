@@ -118,6 +118,13 @@ public abstract class AppDataBase extends RoomDatabase {
             OrderDao orderDao = dataBase.orderDao();
             CustomerDao customerDao = dataBase.customerDao();
             DeliveryDao deliveryDao = dataBase.deliveryDao();
+            ProductDao productDao = dataBase.productDao();
+            CategoryDao categoryDao = dataBase.categoryDao();
+
+            long categoryBeerId = categoryDao.insert(new Category("Cerveza"));
+            long categoryWineId = categoryDao.insert(new Category("Vino"));
+            long categoryVodkaId = categoryDao.insert(new Category("Vodka"));
+            long categoryFernetId = categoryDao.insert(new Category("Fernet"));
 
             long addressID1 = addressDao.insert(new Address("Av. Libertador", -27.763893, -64.243792));
             long addressID2 = addressDao.insert(new Address("Av. Independencia", -27.791204, -64.269635));
@@ -139,6 +146,20 @@ public abstract class AppDataBase extends RoomDatabase {
             orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","20:30:00"),"En Preparacion"));
             orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","21:21:00"),"Cancelado"));
             orderDao.insert(new Order(customerID1,businessID2, deliveryID1, crearFecha("09:11:2024","23:30:00"),"Cancelado"));
+
+            productDao.insert(new Product("Quilmes", "El sabor del encuentro", 2000, 10, businessID1, categoryBeerId));
+            productDao.insert(new Product("Branca", "El sabor del Branca", 80000, 5, businessID1, categoryFernetId));
+            productDao.insert(new Product("Corona", "Cerveza Corona", 2200, 15, businessID1, categoryBeerId));
+            productDao.insert(new Product("Amstel", "Cerveza Amstel", 2300, 8, businessID1, categoryBeerId));
+            productDao.insert(new Product("Cerveza Patagonia", "Cerveza Patagonia", 2500, 12, businessID1, categoryBeerId));
+
+            productDao.insert(new Product("Malbec", "Vino Malbec de Mendoza", 3500, 20, businessID1, categoryWineId));
+            productDao.insert(new Product("Cabernet Sauvignon", "Vino Cabernet Sauvignon", 4000, 8, businessID1, categoryWineId));
+            productDao.insert(new Product("Chardonnay", "Vino Chardonnay", 3000, 18, businessID1, categoryWineId));
+
+            productDao.insert(new Product("Absolut", "Vodka Absolut", 5000, 25, businessID1, categoryVodkaId));
+            productDao.insert(new Product("Smirnoff", "Vodka Smirnoff", 4500, 30, businessID1, categoryVodkaId));
+
         });
     }
 
