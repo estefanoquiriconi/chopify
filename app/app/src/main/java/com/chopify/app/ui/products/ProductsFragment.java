@@ -11,8 +11,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.chopify.app.R;
 import com.chopify.app.databinding.FragmentProductsBinding;
 
 import java.util.ArrayList;
@@ -49,6 +52,11 @@ public class ProductsFragment extends Fragment {
         productsViewModel.getFilteredProducts().observe(getViewLifecycleOwner(), products -> {
             Log.d("ProductsFragment", "Actualizando productos en RecyclerView: " + products.size());
             adapter.updateProducts(products);
+        });
+
+        binding.fabAgregarProducto.setOnClickListener(v -> {
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.action_productsFragment_to_createEditProductFragment);
         });
 
         return binding.getRoot();

@@ -40,13 +40,13 @@ public class ProductsViewModel extends AndroidViewModel {
     }
 
     public void filterProducts(String query) {
-        Log.d("ProductsViewModel", "filterProducts: filtrado productos por query="+query);
+        Log.d("ProductsViewModel", "filterProducts: filtrado productos por query=" + query);
         if (query == null || query.isEmpty()) {
             filteredProducts.setValue(productList);
         } else {
             List<Product> filteredList = new ArrayList<>();
             for (Product product : productList) {
-                if (product.getName().toLowerCase().contains(query.toLowerCase())) {
+                if (product.getName().toLowerCase().contains(query.toLowerCase()) || product.getDescription().toLowerCase().contains(query.toLowerCase())) {
                     filteredList.add(product);
                 }
             }
