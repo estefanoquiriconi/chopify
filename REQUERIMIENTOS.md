@@ -43,19 +43,7 @@
     - Listo
 ---
 
-### 5. **Horarios del Negocio**  
+### 5. **Seguimiento de Pedidos**  
 - El sistema deberá permitir:  
-  - **Configurar los horarios de operación** por día de la semana, indicando apertura y cierre.  
-
----
-
-### 6. **Seguimiento de Pedidos**  
-- El sistema deberá permitir:  
-  - **Actualizar el estado del seguimiento** en cada fase del pedido.  
-  - **Visualizar el historial del pedido** para conocer las actualizaciones realizadas.
-
----
-
-### 8. **Notificaciones y Alertas**  
-- El sistema deberá permitir:  
-  - **Notificar en tiempo real** a los negocios sobre nuevos pedidos.
+  - **Actualizar el estado del pedido**
+  - **Visualizar el historial de pedidos**
