@@ -23,4 +23,6 @@ public interface CustomerDao {
     @Query("SELECT * FROM customers WHERE id = :id")
     LiveData<Customer> getById(long id);
 
+    @Query("SELECT * FROM customers WHERE id = :id")
+    Customer getByIdSync(long id);
 }

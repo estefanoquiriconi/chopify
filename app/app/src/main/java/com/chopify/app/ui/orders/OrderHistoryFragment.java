@@ -17,10 +17,10 @@ import android.view.ViewGroup;
 
 import com.chopify.app.R;
 import com.chopify.app.data.entities.Order;
+import com.chopify.app.helpers.SessionManager;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +30,7 @@ public class OrderHistoryFragment extends Fragment {
     private RecyclerView recyclerView;
     private OrderAdapter adaptador;
     private List<Order> listaPedidos = new ArrayList<>();
+    private SessionManager sessionManager;
 
     public static OrderHistoryFragment newInstance() {
         return new OrderHistoryFragment();
@@ -40,6 +41,12 @@ public class OrderHistoryFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order_history, container, false);
 
+        sessionManager = new SessionManager(requireContext());
+        long businessId = 0;
+        if(sessionManager.getBusiness()!=null){
+            businessId=sessionManager.getBusiness().getId();
+        }
+
         recyclerView = view.findViewById(R.id.rvPedidosPasados);
 
         // Inicializar el ViewModel
@@ -48,31 +55,19 @@ public class OrderHistoryFragment extends Fragment {
                 ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())
         ).get(OrderViewModel.class);
 
-        long businessId = 2; //change me
         orderHistoryViewModel.init(businessId);
 
         adaptador = new OrderAdapter(getContext(), listaPedidos, R.id.orderHistoryFragment);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adaptador);
 
-        // Observar los datos del ViewModel
-        orderHistoryViewModel.getBusinessOrdersWithCustomers().observe(getViewLifecycleOwner(), orders -> {
+        orderHistoryViewModel.getBusinessOrdersWithDetails().observe(getViewLifecycleOwner(), orders -> {
             if (orders != null) {
                 listaPedidos.clear();
-                listaPedidos.addAll(orders);
-
-                // Filtrar pedidos por estado
-                listaPedidos.removeIf(order ->
-                        !order.getStatus().equals("Cancelado") &&
-                                !order.getStatus().equals("Listo") &&
-                                !order.getStatus().equals("En Preparacion")
-                );
-
-                // Ordenar por fecha
-                listaPedidos = listaPedidos.stream()
+                listaPedidos.addAll(orders.stream()
+                        .filter(order -> !order.getStatus().equals("Activo"))
                         .sorted(Comparator.comparing(Order::getOrderDate).reversed())
-                        .collect(Collectors.toList());
-
+                        .collect(Collectors.toList()));
                 adaptador.notifyDataSetChanged();
                 Log.d("OrderHistoryFragment", "onCreateView: Lista actualizada con pedidos pasados. Size=" + listaPedidos.size());
             }

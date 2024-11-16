@@ -38,6 +38,12 @@ public class OrderRepository {
         return orderDao.getBusinessOrdersByStatus(businessId, status);
     }
 
+    public void updateOrderStatus(long orderId, String newStatus) {
+        executor.execute(() -> {
+            orderDao.updateOrderStatus(orderId, newStatus);
+        });
+    }
+
     public void insert(Order order) {
         executor.execute(() -> orderDao.insert(order));
     }

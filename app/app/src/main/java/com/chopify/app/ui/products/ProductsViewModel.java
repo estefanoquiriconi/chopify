@@ -27,4 +27,5 @@ public class ProductsViewModel extends AndroidViewModel {
         return this.productRepository.getAvailableByBusinessId(sessionManager.getBusiness().getId());
     }
 
+
 }

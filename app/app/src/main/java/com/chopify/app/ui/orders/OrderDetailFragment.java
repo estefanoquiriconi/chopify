@@ -2,6 +2,7 @@ package com.chopify.app.ui.orders;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,9 +21,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.chopify.app.R;
-import com.chopify.app.data.dao.OrderDetailDao;
-import com.chopify.app.data.entities.Order;
-import com.chopify.app.data.entities.OrderDetail;
 import com.chopify.app.data.entities.Product;
 import com.chopify.app.ui.products.ProductAdapter;
 
@@ -34,9 +32,11 @@ public class OrderDetailFragment extends Fragment {
     private OrderDetailViewModel orderDetailViewModel;
     private RecyclerView recyclerView;
     private ProductAdapter adaptador;
-    private List<Product> listaProductos = new ArrayList<>();
+    private final List<Product> listaProductos = new ArrayList<>();
     private Long orderId;
-
+    private Button bttnAceptarPedido;
+    private Button bttnCancelarPedido;
+    private View rootView;
 
     public static OrderDetailFragment newInstance() {
         return new OrderDetailFragment();
@@ -45,7 +45,13 @@ public class OrderDetailFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_order_detail, container, false);
+        rootView = inflater.inflate(R.layout.fragment_order_detail, container, false);
+
+        bttnAceptarPedido = rootView.findViewById(R.id.bttnAceptarPedido);
+        bttnCancelarPedido = rootView.findViewById(R.id.bttnCancelarPedido);
+
+        bttnAceptarPedido.setOnClickListener(view1 -> changeOrderStatus(orderId,"Aceptado"));
+        bttnCancelarPedido.setOnClickListener(view1 -> changeOrderStatus(orderId,"Cancelado"));
 
         orderDetailViewModel = new ViewModelProvider(
                 this,
@@ -54,11 +60,11 @@ public class OrderDetailFragment extends Fragment {
 
         if (getArguments() != null) {
             orderId = getArguments().getLong("orderId");
-            Log.d("OrderDetailDebug", "onCreateView: el id del pedido es " + orderId);
+            Log.d("OrderDetail", "onCreateView: el id del pedido es " + orderId);
         }
 
         //recycler view
-        recyclerView = view.findViewById(R.id.rvProductosDelPedido);
+        recyclerView = rootView.findViewById(R.id.rvProductosDelPedido);
         adaptador = new ProductAdapter(getContext(), listaProductos);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adaptador);
@@ -72,7 +78,7 @@ public class OrderDetailFragment extends Fragment {
         });
 
         orderDetailViewModel.getTotalPedido(orderId).observe(getViewLifecycleOwner(), total -> {
-            TextView tvTotalPedido = view.findViewById(R.id.tvTotalPedido);
+            TextView tvTotalPedido = rootView.findViewById(R.id.tvTotalPedido);
             if (total != null) {
                 tvTotalPedido.setText("Total del pedido: $" + String.format("%.2f", total));
             } else {
@@ -80,7 +86,17 @@ public class OrderDetailFragment extends Fragment {
             }
         });
 
-        return view;
+        return rootView;
+    }
+
+    public void changeOrderStatus(long orderId, String newStatus) {
+        orderDetailViewModel.updateOrderStatus(orderId, newStatus);
+
+        if (rootView != null) {
+            NavController navController = Navigation.findNavController(requireView());
+            navController.popBackStack();
+            //navController.navigate(R.id.action_orderFragment_to_orderHistoryFragment);
+        }
     }
 
     @Override

@@ -29,4 +29,7 @@ public interface OrderDao {
 
     @Query("SELECT * FROM orders WHERE business_id = :businessId AND status = :status ORDER BY order_date DESC")
     LiveData<List<Order>> getBusinessOrdersByStatus(long businessId, String status);
+
+    @Query("UPDATE orders SET status = :newStatus WHERE id = :orderId")
+    void updateOrderStatus(long orderId, String newStatus);
 }

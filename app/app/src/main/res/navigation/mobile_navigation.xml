@@ -62,6 +62,7 @@
     <fragment
         android:id="@+id/orderDetailFragment"
         android:name="com.chopify.app.ui.orders.OrderDetailFragment"
-        tools:layout="@layout/fragment_order_detail" />
+        tools:layout="@layout/fragment_order_detail" >
+    </fragment>
 
 </navigation>
