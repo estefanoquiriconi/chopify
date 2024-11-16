@@ -5,10 +5,8 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 
 import com.chopify.app.data.dao.CustomerDao;
-import com.chopify.app.data.dao.OrderDao;
 import com.chopify.app.data.database.AppDataBase;
 import com.chopify.app.data.entities.Customer;
-import com.chopify.app.data.entities.Order;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
