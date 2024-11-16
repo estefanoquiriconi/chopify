@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.chopify.app.data.entities.Order;
 import com.chopify.app.data.entities.OrderDetail;
@@ -25,13 +24,13 @@ public class OrderDetailViewModel extends AndroidViewModel {
     private final OrderDetailRepository orderDetailRepository;
     private final ProductRepository productRepository;
     private final MediatorLiveData<Double> totalPedido = new MediatorLiveData<>();
-
+    private final OrderRepository orderRepository;
 
     public OrderDetailViewModel(@NonNull Application application) {
         super(application);
-        long businessId = 2;
         orderDetailRepository = new OrderDetailRepository(application);
         productRepository = new ProductRepository(application);
+        orderRepository = new OrderRepository(application);
     }
 
     public LiveData<List<OrderDetail>> getOrderDetails(long orderId) {
@@ -55,7 +54,6 @@ public class OrderDetailViewModel extends AndroidViewModel {
                 List<Long> productIds = new ArrayList<>();
                 Map<Long, Integer> productQuantityMap = new HashMap<>();
 
-                // Crea un mapa de productId a quantity basado en OrderDetail
                 for (OrderDetail detail : details) {
                     productIds.add(detail.getProductId());
                     productQuantityMap.put(detail.getProductId(), detail.getQuantity());
@@ -64,7 +62,6 @@ public class OrderDetailViewModel extends AndroidViewModel {
                 LiveData<List<Product>> products = productRepository.getProductsByIds(productIds);
                 result.addSource(products, productList -> {
                     if (productList != null) {
-                        // Asigna la cantidad a cada producto utilizando el mapa
                         for (Product product : productList) {
                             Integer quantity = productQuantityMap.get(product.getId());
                             if (quantity != null) {
@@ -117,4 +114,11 @@ public class OrderDetailViewModel extends AndroidViewModel {
         return totalPedido;
     }
 
+    public LiveData<Order> getOrder(long orderId) {
+        return orderRepository.getById(orderId);
+    }
+
+    public void updateOrderStatus(long orderId, String newStatus) {
+        orderRepository.updateOrderStatus(orderId, newStatus);
+    }
 }

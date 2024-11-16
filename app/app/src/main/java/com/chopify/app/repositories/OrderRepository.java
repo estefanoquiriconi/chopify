@@ -3,7 +3,6 @@ package com.chopify.app.repositories;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.chopify.app.data.dao.OrderDao;
 import com.chopify.app.data.database.AppDataBase;
@@ -36,6 +35,12 @@ public class OrderRepository {
 
     public LiveData<List<Order>> getBusinessOrdersByStatus(long businessId, String status) {
         return orderDao.getBusinessOrdersByStatus(businessId, status);
+    }
+
+    public void updateOrderStatus(long orderId, String newStatus) {
+        executor.execute(() -> {
+            orderDao.updateOrderStatus(orderId, newStatus);
+        });
     }
 
     public void insert(Order order) {
