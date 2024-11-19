@@ -6,6 +6,8 @@ import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "products",
         foreignKeys = {
                 @ForeignKey(
@@ -20,7 +22,7 @@ import androidx.room.PrimaryKey;
                 )
         }
 )
-public class Product {
+public class Product implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private long id;
     private String name;

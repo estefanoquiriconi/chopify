@@ -1,5 +1,7 @@
 package com.chopify.app.ui.products;
 
+import static android.content.Intent.getIntent;
+
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -8,17 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.chopify.app.R;
+import com.chopify.app.data.entities.Product;
 import com.chopify.app.databinding.FragmentProductAddDiscountBinding;
 import com.google.android.material.datepicker.MaterialDatePicker;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 
 public class ProductAddDiscountFragment extends Fragment {
@@ -29,12 +33,14 @@ public class ProductAddDiscountFragment extends Fragment {
     private boolean isStartDatePickerVisible = false;
     private boolean isEndDatePickerVisible = false;
     private ProductAddDiscountViewModel ViewModel;
-    private FragmentProductAddDiscountBinding binding;
+    private FragmentProductAddDiscountBinding biding;
+    private Product product;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = FragmentProductAddDiscountBinding.inflate(inflater, container, false);
+        biding = FragmentProductAddDiscountBinding.inflate(inflater, container, false);
 
         ViewModel = new ViewModelProvider(this).get(ProductAddDiscountViewModel.class);
 
@@ -42,18 +48,18 @@ public class ProductAddDiscountFragment extends Fragment {
         ViewModel.getStartDate().observe(getViewLifecycleOwner(), selection -> {
             Date startDate = new Date(selection);
             DateFormat dateFormat = SimpleDateFormat.getDateInstance();
-            binding.editTextdateStart.setText(dateFormat.format(startDate));
+            biding.editTextdateStart.setText(dateFormat.format(startDate));
         });
 
-        // Observa y actualiza la fecha de fin
+
         ViewModel.getEndDate().observe(getViewLifecycleOwner(), selection -> {
             Date endDate = new Date(selection);
             DateFormat dateFormat = SimpleDateFormat.getDateInstance();
-            binding.editTextdateEnd.setText(dateFormat.format(endDate));
+            biding.editTextdateEnd.setText(dateFormat.format(endDate));
         });
 
-        binding.editTextdateStart.setOnClickListener(v -> {
-            binding.editTextdateStart.setFocusable(false);
+        biding.editTextdateStart.setOnClickListener(v -> {
+            biding.editTextdateStart.setFocusable(false);
             if (!isStartDatePickerVisible) {
                 isStartDatePickerVisible = true;
 
@@ -66,17 +72,17 @@ public class ProductAddDiscountFragment extends Fragment {
 
                 startDatePicker.addOnPositiveButtonClickListener(selection -> {
                     ViewModel.onStartDateSelected(selection);
-                    isStartDatePickerVisible = false; // Fecha seleccionada, se puede abrir nuevamente
+                    isStartDatePickerVisible = false;
                 });
 
                 startDatePicker.addOnDismissListener(dialog -> {
-                    isStartDatePickerVisible = false; // Si el picker se cierra sin seleccionar, permitir el siguiente clic
+                    isStartDatePickerVisible = false;
                 });
             }
         });
 
-        binding.editTextdateEnd.setOnClickListener(v -> {
-            binding.editTextdateEnd.setFocusable(false);
+        biding.editTextdateEnd.setOnClickListener(v -> {
+            biding.editTextdateEnd.setFocusable(false);
             if (!isEndDatePickerVisible) {
                 isEndDatePickerVisible = true;
 
@@ -93,10 +99,26 @@ public class ProductAddDiscountFragment extends Fragment {
                 });
 
                 endDatePicker.addOnDismissListener(dialog -> {
-                    isEndDatePickerVisible = false; // Permite abrir el picker de nuevo
+                    isEndDatePickerVisible = false;
                 });
             }
         });
-        return binding.getRoot();
+        Bundle args = getArguments();
+        if (args != null) {
+             this.product = (Product) args.getSerializable("product");
+            Log.d("productID", product.getId() + "");
+        }
+
+        biding.buttonSave.setOnClickListener(v -> {
+            Log.d("productID", product.getId() + "");
+            ViewModel.savePromotion(product.getId(),Objects.requireNonNull(biding.editNamePromo.getText()).toString(),
+                Double.parseDouble(Objects.requireNonNull(biding.editDiscount.getText()).toString()) );
+            getParentFragmentManager().popBackStack();
+        });
+        biding.buttonCancel.setOnClickListener(v -> {
+            getParentFragmentManager().popBackStack();
+        });
+
+        return biding.getRoot();
     }
 }

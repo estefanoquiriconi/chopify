@@ -61,4 +61,5 @@
     <string name="ver_todos_pedidos">ver todos los pedidos</string>
     <string name="search">Buscar</string>
     <string name="title_orders">Pedidos</string>
+    <string name="agrega_descuento">Agrega descuento</string>
 </resources>

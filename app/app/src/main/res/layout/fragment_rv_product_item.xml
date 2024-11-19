@@ -53,13 +53,14 @@
         android:id="@+id/priceCantProductItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/verde_lima"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/nunito_bold"
+        android:textColor="@color/verde_lima"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_bias="0.759"
         tools:text="$50.00 x 2" />
 
     <TextView
@@ -76,6 +77,18 @@
         app:layout_constraintVertical_bias="0.3"
         tools:text="-20%" />
 
+    <ImageButton
+        android:id="@+id/addDsicountProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/negro_carbon"
+        android:contentDescription="@string/agrega_descuento"
+        android:src="@drawable/circle_outline24"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintVertical_bias="0.0" />
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"

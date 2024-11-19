@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.chopify.app.R;
 import com.chopify.app.databinding.FragmentProductsBinding;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ProductsFragment extends Fragment {
@@ -32,6 +33,13 @@ public class ProductsFragment extends Fragment {
         binding = FragmentProductsBinding.inflate(inflater, container, false);
         adapter = new ProductAdapter(getContext(), new ArrayList<>());
         binding.rvProductos.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter.setOnProductClickListener(product -> {
+            NavController navController = Navigation.findNavController(requireView());
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("product", (Serializable) product);
+            navController.navigate(R.id.action_productsFragment_to_addDiscountProductFragment, bundle);
+        });
+
         binding.rvProductos.setAdapter(adapter);
 
         productsViewModel.getProducts().observe(getViewLifecycleOwner(), products -> adapter.updateProducts(products));
