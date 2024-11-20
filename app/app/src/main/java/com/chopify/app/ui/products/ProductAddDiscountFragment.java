@@ -23,6 +23,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
+import java.util.TimeZone;
 
 
 public class ProductAddDiscountFragment extends Fragment {
@@ -41,7 +42,7 @@ public class ProductAddDiscountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         biding = FragmentProductAddDiscountBinding.inflate(inflater, container, false);
-
+        TimeZone.setDefault(TimeZone.getTimeZone("America/Argentina/Buenos_aires"));
         ViewModel = new ViewModelProvider(this).get(ProductAddDiscountViewModel.class);
 
         // Observa y actualiza la fecha de inicio
