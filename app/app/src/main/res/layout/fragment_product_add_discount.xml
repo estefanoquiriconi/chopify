@@ -50,6 +50,7 @@
               >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editNamePromo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/blanco_humo"
@@ -75,6 +76,7 @@
                 app:hintTextColor="@color/negro_carbon">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editDiscount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/blanco_humo"
