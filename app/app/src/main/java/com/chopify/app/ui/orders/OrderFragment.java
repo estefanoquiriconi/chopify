@@ -66,7 +66,7 @@ public class OrderFragment extends Fragment {
             if (orders != null) {
                 listaPedidos.clear();
                 listaPedidos.addAll(orders.stream()
-                        .filter(order -> order.getStatus().equals("Activo"))
+                        .filter(order -> order.getStatus().equals("Activo") || order.getStatus().equals("En preparación"))
                         .sorted(Comparator.comparing(Order::getOrderDate).reversed())
                         .collect(Collectors.toList()));
                 adaptador.notifyDataSetChanged();

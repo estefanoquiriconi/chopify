@@ -43,8 +43,8 @@ public class OrderHistoryFragment extends Fragment {
 
         sessionManager = new SessionManager(requireContext());
         long businessId = 0;
-        if(sessionManager.getBusiness()!=null){
-            businessId=sessionManager.getBusiness().getId();
+        if (sessionManager.getBusiness() != null) {
+            businessId = sessionManager.getBusiness().getId();
         }
 
         recyclerView = view.findViewById(R.id.rvPedidosPasados);
@@ -65,7 +65,7 @@ public class OrderHistoryFragment extends Fragment {
             if (orders != null) {
                 listaPedidos.clear();
                 listaPedidos.addAll(orders.stream()
-                        .filter(order -> !order.getStatus().equals("Activo"))
+                        .filter(order -> order.getStatus().equals("Cancelado") || order.getStatus().equals("Listo"))
                         .sorted(Comparator.comparing(Order::getOrderDate).reversed())
                         .collect(Collectors.toList()));
                 adaptador.notifyDataSetChanged();

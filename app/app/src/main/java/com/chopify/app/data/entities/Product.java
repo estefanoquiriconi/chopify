@@ -34,6 +34,8 @@ public class Product {
   
     @Ignore
     private int quantity;
+    @Ignore
+    private double discount;
 
     public Product() {
     }
@@ -110,5 +112,13 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 }

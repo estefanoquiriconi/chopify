@@ -49,9 +49,6 @@ public class OrderDetailFragment extends Fragment {
         bttnAceptarPedido = rootView.findViewById(R.id.bttnAceptarPedido);
         bttnCancelarPedido = rootView.findViewById(R.id.bttnCancelarPedido);
 
-        bttnAceptarPedido.setOnClickListener(view1 -> changeOrderStatus(orderId,"Aceptado"));
-        bttnCancelarPedido.setOnClickListener(view1 -> changeOrderStatus(orderId,"Cancelado"));
-
         orderDetailViewModel = new ViewModelProvider(
                 this,
                 ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())
@@ -78,14 +75,55 @@ public class OrderDetailFragment extends Fragment {
 
         orderDetailViewModel.getTotalPedido(orderId).observe(getViewLifecycleOwner(), total -> {
             TextView tvTotalPedido = rootView.findViewById(R.id.tvTotalPedido);
-            if (total != null) {
-                tvTotalPedido.setText("Total del pedido: $" + String.format("%.2f", total));
-            } else {
-                tvTotalPedido.setText("Total del pedido: $0.00");
+            tvTotalPedido.setText("Total del pedido: $" + String.format("%.2f", total != null ? total : 0.0));
+        });
+
+        setupButtons();
+        
+        orderDetailViewModel.getOrder(orderId).observe(getViewLifecycleOwner(), order -> {
+            if(order.getStatus().equals("Activo")){
+                bttnAceptarPedido.setOnClickListener(view1 -> changeOrderStatus(orderId,"En preparación"));
+            }else if(order.getStatus().equals("En preparación")){
+                bttnAceptarPedido.setOnClickListener(view1 -> changeOrderStatus(orderId,"Listo"));
+            }
+            bttnCancelarPedido.setOnClickListener(view1 -> changeOrderStatus(orderId,"Cancelado"));
+        });
+
+
+
+        return rootView;
+    }
+
+    private void setupButtons() {
+        orderDetailViewModel.getOrder(orderId).observe(getViewLifecycleOwner(), order -> {
+            if (order != null) {
+                bttnAceptarPedido.setVisibility(View.VISIBLE);
+                bttnCancelarPedido.setVisibility(View.VISIBLE);
+
+                switch (order.getStatus()) {
+                    case "Activo":
+                        bttnAceptarPedido.setText("PREPARAR");
+                        bttnAceptarPedido.setOnClickListener(view -> changeOrderStatus(orderId, "En preparación"));
+                        break;
+                    case "En preparación":
+                        bttnAceptarPedido.setText("LISTO");
+                        bttnAceptarPedido.setOnClickListener(view -> changeOrderStatus(orderId, "Listo"));
+                        break;
+                    case "Cancelado":
+                    case "Listo":
+                        bttnAceptarPedido.setVisibility(View.GONE);
+                        bttnCancelarPedido.setVisibility(View.GONE);
+                        break;
+                }
+
+                bttnAceptarPedido.invalidate();
+                bttnAceptarPedido.requestLayout();
+                bttnCancelarPedido.invalidate();
+                bttnCancelarPedido.requestLayout();
             }
         });
 
-        return rootView;
+        bttnCancelarPedido.setOnClickListener(view -> changeOrderStatus(orderId, "Cancelado"));
     }
 
     public void changeOrderStatus(long orderId, String newStatus) {
@@ -94,7 +132,6 @@ public class OrderDetailFragment extends Fragment {
         if (rootView != null) {
             NavController navController = Navigation.findNavController(requireView());
             navController.popBackStack();
-            //navController.navigate(R.id.action_orderFragment_to_orderHistoryFragment);
         }
     }
 
