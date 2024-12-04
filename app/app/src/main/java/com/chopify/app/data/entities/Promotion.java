@@ -14,9 +14,9 @@ public class Promotion {
     private String description;
     private double discount;
     @ColumnInfo(name = "start_date")
-    private Date startDate;
+    private long startDate;
     @ColumnInfo(name = "end_date")
-    private Date endDate;
+    private long endDate;
     private boolean active = true;
 
     public Promotion(){
@@ -63,19 +63,19 @@ public class Promotion {
         this.discount = discount;
     }
 
-    public Date getStartDate() {
+    public Long getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(long startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public Long getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(long endDate) {
         this.endDate = endDate;
     }
 

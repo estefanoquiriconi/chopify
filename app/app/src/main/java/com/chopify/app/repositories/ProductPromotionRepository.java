@@ -35,5 +35,4 @@ public class ProductPromotionRepository {
     public void deleteAllForProduct(long productId) {
         executor.execute(() -> productPromotionDao.deleteAllForProduct(productId));
     }
-
 }

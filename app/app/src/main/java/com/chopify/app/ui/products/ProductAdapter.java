@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,10 +21,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListItem
 
     private List<Product> products;
     private final Context context;
+    private OnProductClickListener listener;
+
 
     public ProductAdapter(Context context, List<Product> products) {
         this.products = products;
         this.context = context;
+
     }
 
     @NonNull
@@ -45,6 +49,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListItem
         }
         holder.productImage.setImageResource(getImage((int) product.getCategoryId()));
         holder.productDiscount.setText(String.valueOf(product.getId()));
+        holder.addDiscount.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onAddDiscountClick(product);
+            }
+        });
+
     }
 
     @Override
@@ -58,6 +68,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListItem
         notifyDataSetChanged();
     }
 
+    public void setOnProductClickListener(OnProductClickListener listener) {
+        this.listener = listener;
+    }
+
     public static class ListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView productImage;
@@ -65,6 +79,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListItem
         TextView productDescription;
         TextView productPrice;
         TextView productDiscount;
+        ImageButton addDiscount;
+
 
         public ListItemHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,6 +89,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListItem
             productDescription = itemView.findViewById(R.id.descriptionProductItem);
             productPrice = itemView.findViewById(R.id.priceCantProductItem);
             productDiscount = itemView.findViewById(R.id.discountLabelProductItem);
+            addDiscount = itemView.findViewById(R.id.addDsicountProduct);
         }
 
         @Override
@@ -94,5 +111,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListItem
             default:
                 return 0;
         }
+    }
+
+    public interface OnProductClickListener {
+        void onAddDiscountClick(Product product);
     }
 }

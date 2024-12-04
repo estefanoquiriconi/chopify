@@ -44,7 +44,6 @@ public class ProductPromotion {
     public void setId(long id) {
         this.id = id;
     }
-
     public long getProductId() {
         return productId;
     }

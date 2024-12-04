@@ -6,10 +6,13 @@
     app:startDestination="@id/loginFragment">
 
     <fragment
-        android:id="@+id/businessFragment"
-        android:name="com.chopify.app.ui.business.BusinessFragment"
-        tools:layout="@layout/fragment_business" />
-
+        android:id="@+id/orderHistoryFragment"
+        android:name="com.chopify.app.ui.orders.OrderHistoryFragment"
+        tools:layout="@layout/fragment_order_history" />
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="com.chopify.app.ui.orders.OrderDetailFragment"
+        tools:layout="@layout/fragment_order_detail" />
     <activity
         android:id="@+id/splash"
         android:name="com.chopify.app.Splash"
@@ -20,8 +23,7 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_navigation_products"
-            app:destination="@id/navigation"
-            />
+            app:destination="@id/navigation" />
     </fragment>
     <fragment
         android:id="@+id/productAddDiscountFragment"
@@ -52,17 +54,13 @@
         <fragment
             android:id="@+id/navigation_products"
             android:name="com.chopify.app.ui.products.ProductsFragment"
-            tools:layout="@layout/fragment_products" />
-
+            tools:layout="@layout/fragment_products">
+            <action
+                android:id="@+id/action_productsFragment_to_createEditProductFragment"
+                app:destination="@id/productCreateEditFragment" />
+            <action
+                android:id="@+id/action_productsFragment_to_addDiscountProductFragment"
+                app:destination="@id/productAddDiscountFragment" />
+        </fragment>
     </navigation>
-    <fragment
-        android:id="@+id/orderHistoryFragment"
-        android:name="com.chopify.app.ui.orders.OrderHistoryFragment"
-        tools:layout="@layout/fragment_order_history" />
-    <fragment
-        android:id="@+id/orderDetailFragment"
-        android:name="com.chopify.app.ui.orders.OrderDetailFragment"
-        tools:layout="@layout/fragment_order_detail" >
-    </fragment>
-
 </navigation>

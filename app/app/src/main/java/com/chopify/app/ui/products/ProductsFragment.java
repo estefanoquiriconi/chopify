@@ -11,10 +11,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.chopify.app.R;
 import com.chopify.app.databinding.FragmentProductsBinding;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ProductsFragment extends Fragment {
@@ -29,6 +33,13 @@ public class ProductsFragment extends Fragment {
         binding = FragmentProductsBinding.inflate(inflater, container, false);
         adapter = new ProductAdapter(getContext(), new ArrayList<>());
         binding.rvProductos.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter.setOnProductClickListener(product -> {
+            NavController navController = Navigation.findNavController(requireView());
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("product", (Serializable) product);
+            navController.navigate(R.id.action_productsFragment_to_addDiscountProductFragment, bundle);
+        });
+
         binding.rvProductos.setAdapter(adapter);
 
         productsViewModel.getProducts().observe(getViewLifecycleOwner(), products -> adapter.updateProducts(products));
@@ -49,6 +60,11 @@ public class ProductsFragment extends Fragment {
         productsViewModel.getFilteredProducts().observe(getViewLifecycleOwner(), products -> {
             Log.d("ProductsFragment", "Actualizando productos en RecyclerView: " + products.size());
             adapter.updateProducts(products);
+        });
+
+        binding.fabAgregarProducto.setOnClickListener(v -> {
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.action_productsFragment_to_createEditProductFragment);
         });
 
         return binding.getRoot();

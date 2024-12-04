@@ -34,38 +34,37 @@
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nameProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:textColorHint="@color/negro_carbon"
                 android:hint="@string/name"
+                android:textColorHint="@color/negro_carbon"
                 app:boxCornerRadiusBottomEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
                 app:boxCornerRadiusTopEnd="16dp"
                 app:boxCornerRadiusTopStart="16dp"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
-                app:hintTextColor="@color/negro_carbon"
-                >
+                app:hintTextColor="@color/negro_carbon">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/productName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/blanco_humo"
+                    android:inputType="text"
                     android:textColor="@color/negro_carbon"
                     android:textColorHint="@color/negro_carbon"
-                    android:textCursorDrawable="@drawable/cursor_drawable"/>
+                    android:textCursorDrawable="@drawable/cursor_drawable" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:hint="@string/description"
                 android:textColor="@color/negro_carbon"
                 android:textColorHint="@color/negro_carbon"
-                android:hint="@string/description"
                 app:boxCornerRadiusBottomEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
                 app:boxCornerRadiusTopEnd="16dp"
@@ -75,49 +74,22 @@
                 app:hintTextColor="@color/negro_carbon">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/productDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/blanco_humo"
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHint="@color/negro_carbon"
-                    android:textCursorDrawable="@drawable/cursor_drawable"/>
+                    android:textCursorDrawable="@drawable/cursor_drawable" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:textColorHint="@color/negro_carbon"
                 android:hint="@string/price"
-                app:boxCornerRadiusBottomEnd="16dp"
-                app:boxCornerRadiusBottomStart="16dp"
-                app:boxCornerRadiusTopEnd="16dp"
-                app:boxCornerRadiusTopStart="16dp"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp"
-                app:hintTextColor="@color/negro_carbon"
-
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/blanco_humo"
-                    android:inputType="text"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/negro_carbon"
-                    android:textCursorDrawable="@drawable/cursor_drawable"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/stock"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:textColorHint="@color/negro_carbon"
-                android:hint="@string/stock"
                 app:boxCornerRadiusBottomEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
                 app:boxCornerRadiusTopEnd="16dp"
@@ -127,14 +99,39 @@
                 app:hintTextColor="@color/negro_carbon">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextdateEnd"
+                    android:id="@+id/productPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/blanco_humo"
-                    android:inputType="date"
+                    android:inputType="numberDecimal"
                     android:textColor="@color/black"
                     android:textColorHint="@color/negro_carbon"
-                    android:textCursorDrawable="@drawable/cursor_drawable"/>
+                    android:textCursorDrawable="@drawable/cursor_drawable" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:hint="@string/stock"
+                android:textColorHint="@color/negro_carbon"
+                app:boxCornerRadiusBottomEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusTopStart="16dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:hintTextColor="@color/negro_carbon">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/productStock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/blanco_humo"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/negro_carbon"
+                    android:textCursorDrawable="@drawable/cursor_drawable" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -158,13 +155,12 @@
                     android:id="@+id/exposedDropdown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="16dp"
                     android:backgroundTint="@color/negro_carbon"
                     android:inputType="none"
-                    tools:ignore="LabelFor"
-                    android:textColor="@color/blanco_humo"
+                    android:paddingVertical="16dp"
                     android:paddingStart="10dp"
-                 />
+                    android:textColor="@color/blanco_humo"
+                    tools:ignore="LabelFor" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
@@ -192,10 +188,11 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/blanco_humo"
                     android:padding="16dp"
-                    android:text="@string/cancel"
+                    android:text="Regresar"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    app:cornerRadius="16dp" />
+                    app:cornerRadius="16dp"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
 
 
