@@ -29,5 +29,5 @@ public interface PromotionDao {
     @Query("SELECT * FROM promotions WHERE name = :name  LIMIT 1")
     LiveData<Promotion> getPromotionByName(String name);
     @Query("SELECT * FROM promotions WHERE active = 1 AND start_date <= :currentDate AND end_date >= :currentDate")
-    List<Promotion> getActivePromotions(Date currentDate);
+    LiveData<List<Promotion>> getActivePromotions(Date currentDate);
 }

@@ -121,7 +121,9 @@ public abstract class AppDataBase extends RoomDatabase {
             DeliveryDao deliveryDao = dataBase.deliveryDao();
             ProductDao productDao = dataBase.productDao();
             CategoryDao categoryDao = dataBase.categoryDao();
-          
+            PromotionDao promotionDao = dataBase.promotionDao();
+            ProductPromotionDao productPromotionDao = dataBase.productPromotionDao();
+
             //Categorías
             long categoryBeerId = categoryDao.insert(new Category("Cerveza"));
             long categoryWineId = categoryDao.insert(new Category("Vino"));
@@ -180,7 +182,12 @@ public abstract class AppDataBase extends RoomDatabase {
             long orderDetailID7 = orderDetailDao.insert(new OrderDetail(orderID3,productID1,2,200));
             long orderDetailID8 = orderDetailDao.insert(new OrderDetail(orderID5,productID2,3,300));
             long orderDetailID9 = orderDetailDao.insert(new OrderDetail(orderID6,productID2,3,300));
-          
+
+            //Promociones
+            long promoID1 = promotionDao.insert(new Promotion("Promo 1","20 de descuento", 20,crearFecha("01:11:2024","00:00"), crearFecha("01:12:2024","00:00"), true));
+
+            //Promociones y productos
+            long productPromoID1 = productPromotionDao.insert(new ProductPromotion(productID1, promoID1));
         });
     }
 

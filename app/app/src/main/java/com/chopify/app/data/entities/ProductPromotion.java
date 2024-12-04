@@ -29,6 +29,14 @@ public class ProductPromotion {
     @ColumnInfo(name = "promotion_id")
     private long promotionId;
 
+    public ProductPromotion(long productId, long promotionId) {
+        this.productId = productId;
+        this.promotionId = promotionId;
+    }
+
+    public ProductPromotion(){
+    }
+
     public long getId() {
         return id;
     }

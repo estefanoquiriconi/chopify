@@ -19,6 +19,18 @@ public class Promotion {
     private long endDate;
     private boolean active = true;
 
+    public Promotion(){
+    }
+
+    public Promotion(String name, String description, double discount, Date startDate, Date endDate, boolean active) {
+        this.name = name;
+        this.description = description;
+        this.discount = discount;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.active = active;
+    }
+
     public long getId() {
         return id;
     }

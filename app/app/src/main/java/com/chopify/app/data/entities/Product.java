@@ -36,6 +36,8 @@ public class Product implements Serializable {
   
     @Ignore
     private int quantity;
+    @Ignore
+    private double discount;
 
     public Product() {
     }
@@ -112,5 +114,13 @@ public class Product implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 }
