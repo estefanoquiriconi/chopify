@@ -15,7 +15,7 @@ import java.util.List;
 @Dao
 public interface PromotionDao {
     @Insert
-    long insertAndReturnId(Promotion promotion);
+    long insert(Promotion promotion);
 
     @Update
     void update(Promotion promotion);

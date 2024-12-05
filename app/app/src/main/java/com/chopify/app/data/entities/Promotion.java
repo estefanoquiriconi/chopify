@@ -22,7 +22,7 @@ public class Promotion {
     public Promotion(){
     }
 
-    public Promotion(String name, String description, double discount, Date startDate, Date endDate, boolean active) {
+    public Promotion(String name, String description, double discount, long startDate, long endDate, boolean active) {
         this.name = name;
         this.description = description;
         this.discount = discount;

@@ -1,6 +1,5 @@
 package com.chopify.app.ui.products;
 
-import static android.content.Intent.getIntent;
 
 import androidx.lifecycle.ViewModelProvider;
 

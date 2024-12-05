@@ -36,7 +36,7 @@ public class ProductDiscountRepository {
     @Transaction
     public void insert(Promotion promotion,long productId) {
         executor.execute(() ->{
-        long promotionId = promotionDao.insertAndReturnId(promotion);
+        long promotionId = promotionDao.insert(promotion);
 
         // Inserta ProductPromotion solo si la promoción fue insertada correctamente
         if (promotionId > 0) {

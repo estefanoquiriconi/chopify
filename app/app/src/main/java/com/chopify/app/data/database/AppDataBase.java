@@ -184,7 +184,7 @@ public abstract class AppDataBase extends RoomDatabase {
             long orderDetailID9 = orderDetailDao.insert(new OrderDetail(orderID6,productID2,3,300));
 
             //Promociones
-            long promoID1 = promotionDao.insert(new Promotion("Promo 1","20 de descuento", 20,crearFecha("01:11:2024","00:00"), crearFecha("01:12:2024","00:00"), true));
+            long promoID1 = promotionDao.insert(new Promotion("Promo 1","20 de descuento", 20,crearFecha("01:11:2024","00:00").getTime(), crearFecha("01:12:2024","00:00").getTime(), true));
 
             //Promociones y productos
             long productPromoID1 = productPromotionDao.insert(new ProductPromotion(productID1, promoID1));
